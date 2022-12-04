@@ -16,7 +16,30 @@
   margin-right: 30px;
 }
 
+.profile__add-button {
+  margin-left: auto;
+}
+
+.profile__name {
+  margin: 0 0 16px;
+}
+.profile__name::after {
+  content: url(../images/Edit\ Button.svg);
+  margin-left: 18px;
+  width: 24px;
+  height: 24px;
+}
+
+.profile__role {
+  margin: 0;
+}
 
 .profile__add-button{
-    margin-left: auto;
+    width: 150px;
+    height: 50px;
+    border: 2px solid #fff;
+    border-radius: 2px;
+    background-color: #000;
+    color: #fff;
+    font-size: 22px;
 }
