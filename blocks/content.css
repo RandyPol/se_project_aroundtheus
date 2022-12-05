@@ -19,22 +19,26 @@
   width: 100%;
 }
 
-.content__column-image-title {
+.content__container-titleicon{
   display: flex;
   margin: 25px 20px;
+}
+
+.content__column-image-title {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
   line-height: 1.2;
 
-  text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 .content__heart-icon {
   margin-left: auto;
 }
+
 .content__heart-icon:hover {
   opacity: .5;
 }
