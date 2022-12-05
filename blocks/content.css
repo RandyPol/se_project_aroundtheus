@@ -42,3 +42,13 @@
 .content__heart-icon:hover {
   opacity: .5;
 }
+
+
+@media screen and (max-width: 949px) {
+  .content__column {
+    margin: 0;
+    width: calc((100% - 34px) / 2);
+    background-color: #fff;
+    border-radius: 0 0 10px 10px;
+  }
+}

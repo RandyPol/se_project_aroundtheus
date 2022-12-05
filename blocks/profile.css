@@ -62,3 +62,23 @@
 .profile__add-button:hover {
   opacity: 0.6;
 }
+
+@media screen and (max-width: 949px) {
+  .profile__name {
+    font-size: 37px;
+  }
+}
+@media screen and (max-width: 849px) {
+  .profile__name {
+    font-size: 35px;
+  }
+}
+@media screen and (max-width: 749px) {
+  .profile__name {
+    font-size: 20px;
+  }
+  .profile__add-button {
+    width: 100px;
+    height: 40px;
+  }
+}
