@@ -1,11 +1,12 @@
-.content{
-    background-color: aqua;
+.content {
+  background-color: aqua;
 }
 
 .content__columns {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  min-width: 282px;
   flex-wrap: wrap;
   gap: 20px 17px;
 }
@@ -23,14 +24,17 @@
 }
 
 .content__column-image-title {
-  margin: 25px 20px 25px 20px;
+  display: flex;
+  margin: 25px 20px;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
   line-height: 1.2;
 }
-.content__column-image-title::after {
-  content: url(../images/card_heart.svg);
-  margin-left: 28px;
+.content__heart-icon {
+  margin-left: auto;
+}
+.content__heart-icon:hover {
+  opacity: .5;
 }
