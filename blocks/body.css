@@ -22,3 +22,9 @@
     padding: 45px 25px 60px 25px;
   }
 }
+
+@media screen and (max-width: 569px) {
+  .body {
+    padding: 0;
+  }
+}

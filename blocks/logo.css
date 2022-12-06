@@ -4,3 +4,10 @@
     width: 173px;
     height: 33px;
 }
+
+@media screen and (max-width: 569px) {
+    .logo{
+      margin-left: 27px;
+    }
+  }
+  

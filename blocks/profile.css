@@ -34,10 +34,6 @@
   opacity: 0.6;
 }
 
-.profile__add-button {
-  margin-left: auto;
-}
-
 .profile__role {
   margin: 0;
 
@@ -49,6 +45,8 @@
 }
 
 .profile__add-button {
+  margin-left: auto;
+
   box-sizing: border-box;
   padding: 0;
   width: 150px;
@@ -80,5 +78,34 @@
   .profile__add-button {
     width: 100px;
     height: 40px;
+  }
+}
+
+@media screen and (max-width: 569px) {
+  .profile__container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile__avatar {
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+
+  .profile__name--role_container {
+    margin-bottom: 36px;
+  }
+
+  .profile__name {
+    font-size: 22px;
+  }
+
+  .profile__role {
+    font-size: 14px;
+  }
+
+  .profile__add-button {
+    width: 100%;
   }
 }

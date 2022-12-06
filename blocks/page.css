@@ -5,8 +5,26 @@
   line-height: 1.25;
 }
 
-
-.page__profile{
+.page__profile {
   margin-top: 40px;
   margin-bottom: 51px;
+}
+
+@media screen and (max-width: 569px) {
+  .page__profile {
+    box-sizing: border-box;
+    padding: 0 19px 0;
+    margin-top: 42px;
+    margin-bottom: 36px;
+  }
+
+  .page__content {
+    box-sizing: border-box;
+    padding: 0 19px 0;
+  }
+  .page__footer {
+    box-sizing: border-box;
+    padding: 0 19px 0;
+    margin-bottom: 36px;
+  }
 }

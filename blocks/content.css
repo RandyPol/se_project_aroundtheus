@@ -10,8 +10,6 @@
 .content__column {
   margin: 0;
   width: calc((100% - 34px) / 3);
-  background-color: #fff;
-  border-radius: 0 0 10px 10px;
 }
 
 .content__column-image {
@@ -19,9 +17,12 @@
   width: 100%;
 }
 
-.content__container-titleicon{
+.content__container-titleicon {
   display: flex;
-  margin: 25px 20px;
+  padding: 25px 20px;
+  background-color: #fff;
+  border-radius: 0 0 10px 10px;
+  
 }
 
 .content__column-image-title {
@@ -40,15 +41,28 @@
 }
 
 .content__heart-icon:hover {
-  opacity: .5;
+  opacity: 0.5;
 }
-
 
 @media screen and (max-width: 949px) {
   .content__column {
     margin: 0;
     width: calc((100% - 34px) / 2);
-    background-color: #fff;
-    border-radius: 0 0 10px 10px;
+  }
+}
+
+@media screen and (max-width: 569px) {
+  .content__columns {
+    flex-direction: column;
+    width: 100%;
+    min-width: 282px;
+    row-gap: 20px;
+  }
+  .content__column {
+    width: 100%;
+  }
+  .content__column-image {
+    display: block;
+    border-radius: 10px 10px 0px 0px;
   }
 }
