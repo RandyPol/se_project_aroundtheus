@@ -22,132 +22,141 @@
           />
         </div>
       </header>
-      <section class="profile page__profile">
-        <div class="profile__container">
-          <img
-            src="./images/jacques-cousteau.jpg"
-            alt="A portrait of Jacques Cousteau"
-            class="profile__avatar"
-          />
+      <main class="main page__main">
+        <!-- Profile Section -->
+        <section class="profile main__profile">
+          <div class="profile__container">
+            <img
+              src="./images/jacques-cousteau.jpg"
+              alt="A portrait of Jacques Cousteau"
+              class="profile__avatar"
+            />
 
-          <div class="profile__namerole-container">
-            <div class="profile__name-container">
-              <h1 class="profile__name">Jacques Cousteau</h1>
-              <img
-                src="./images/Edit-Button.svg"
-                class="profile__name-edit"
-                alt="Pencil icon"
-              />
+            <div class="profile__namerole-container">
+              <div class="profile__name-container">
+                <h1 class="profile__name">Jacques Cousteau</h1>
+                <button class="profile__name-edit" type="button">
+                  <img
+                    src="./images/Edit-Button.svg"
+                    alt="Pencil icon"
+                    class="profile__pencil"
+                  />
+                </button>
+              </div>
+              <p class="profile__role">Explore</p>
             </div>
-            <p class="profile__role">Explore</p>
-          </div>
 
-          <button class="profile__add-button">+</button>
-        </div>
-      </section>
-      <main class="content page__content">
-        <div class="content__columns">
+            <button type="button" class="profile__add-button">
+              <img
+                src="./images/add-button.svg"
+                alt="Add icon"
+                class="profile__add-icon"
+              />
+            </button>
+          </div>
+        </section>
+        <section class="cards">
           <!-- Yosemite Valley -->
-          <figure class="content__column">
+          <figure class="cards__column">
             <img
               src="images/yosemite-valley.jpg"
               alt="Lanscaped of Yosemite valley"
-              class="content__column-image"
+              class="cards__column-image"
             />
 
-            <figcaption class="content__container-titleicon">
-              <span class="content__column-image-title">Yosemite Valley</span>
+            <figcaption class="cards__container-titleicon">
+              <span class="cards__column-image-title">Yosemite Valley</span>
               <img
                 src="./images/card_heart.svg"
-                class="content__heart-icon"
+                class="cards__heart-icon"
                 alt="Heart icon"
               />
             </figcaption>
           </figure>
           <!-- Lake Louise -->
-          <figure class="content__column">
+          <figure class="cards__column">
             <img
               src="images/lake-louise.jpg"
               alt="Lanscaped of Lake Louise"
-              class="content__column-image"
+              class="cards__column-image"
             />
 
-            <figcaption class="content__container-titleicon">
-              <span class="content__column-image-title">Lake Louise</span>
+            <figcaption class="cards__container-titleicon">
+              <span class="cards__column-image-title">Lake Louise</span>
               <img
                 src="./images/card_heart.svg"
-                class="content__heart-icon"
+                class="cards__heart-icon"
                 alt="Heart icon"
               />
             </figcaption>
           </figure>
           <!-- Bald Mountains -->
-          <figure class="content__column">
+          <figure class="cards__column">
             <img
               src="images/bald-mountains.jpg"
               alt="Bald Mountains"
-              class="content__column-image"
+              class="cards__column-image"
             />
-            <figcaption class="content__container-titleicon">
-              <span class="content__column-image-title">Bald Mountains</span>
+            <figcaption class="cards__container-titleicon">
+              <span class="cards__column-image-title">Bald Mountains</span>
               <img
                 src="./images/card_heart.svg"
-                class="content__heart-icon"
+                class="cards__heart-icon"
                 alt="Heart icon"
               />
             </figcaption>
           </figure>
           <!-- Latemar -->
-          <figure class="content__column">
+          <figure class="cards__column">
             <img
               src="images/latemar.jpg"
               alt="Latemar"
-              class="content__column-image"
+              class="cards__column-image"
             />
-            <figcaption class="content__container-titleicon">
-              <span class="content__column-image-title"> Latemar</span>
+            <figcaption class="cards__container-titleicon">
+              <span class="cards__column-image-title"> Latemar</span>
               <img
                 src="./images/card_heart.svg"
-                class="content__heart-icon"
+                class="cards__heart-icon"
                 alt="Heart icon"
               />
             </figcaption>
           </figure>
           <!-- Vanoise Nationa... -->
-          <figure class="content__column">
+          <figure class="cards__column">
             <img
               src="images/vanoise-national-park.jpg"
               alt="Vanoise Nationa..."
-              class="content__column-image"
+              class="cards__column-image"
             />
 
-            <figcaption class="content__container-titleicon">
-              <span class="content__column-image-title">Vanoise National</span>
+            <figcaption class="cards__container-titleicon">
+              <span class="cards__column-image-title">Vanoise National</span>
               <img
                 src="./images/card_heart.svg"
-                class="content__heart-icon"
+                class="cards__heart-icon"
                 alt="Heart icon"
               />
             </figcaption>
           </figure>
           <!-- Lago di Braies -->
-          <figure class="content__column">
+          <figure class="cards__column">
             <img
               src="images/lago-di-braies.jpg"
               alt="Lago di Braies"
-              class="content__column-image"
+              class="cards__column-image"
             />
 
-            <figcaption class="content__container-titleicon">
-              <span class="content__column-image-title">Lago di Braies</span>
+            <figcaption class="cards__container-titleicon">
+              <span class="cards__column-image-title">Lago di Braies</span>
               <img
                 src="./images/card_heart.svg"
-                class="content__heart-icon"
+                class="cards__heart-icon"
                 alt="Heart icon"
               />
             </figcaption>
           </figure>
-        </div>
+        </section>
       </main>
       <footer class="footer page__footer">
         <p class="footer__copyright">© 2022 Around The U.S.</p>

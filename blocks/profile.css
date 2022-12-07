@@ -18,7 +18,7 @@
   display: flex;
   column-gap: 18px;
   margin-bottom: 16px;
-  align-items: baseline;
+  align-items: center;
 }
 
 .profile__name {
@@ -30,8 +30,23 @@
   line-height: 1.14;
 }
 
+.profile__name-edit {
+  padding: 7px;
+  text-decoration: none;
+  background-color: transparent;
+  box-sizing: border-box;
+  border: 1px solid #ffffff;
+}
 .profile__name-edit:hover {
   opacity: 0.6;
+}
+
+.profile__pencil {
+  width: 10px;
+  height: 10px;
+  margin: 0;
+  padding: 0;
+  display: flex;
 }
 
 .profile__role {
@@ -44,9 +59,13 @@
   line-height: 1.22;
 }
 
+.profile__add-icon {
+  display: flex;
+  margin: auto;
+}
+
 .profile__add-button {
   margin-left: auto;
-
   box-sizing: border-box;
   padding: 0;
   width: 150px;
@@ -55,7 +74,7 @@
   border-radius: 2px;
   background-color: transparent;
   color: #fff;
-  font-size: 22px;
+
 }
 .profile__add-button:hover {
   opacity: 0.6;
@@ -83,6 +102,7 @@
 
 @media screen and (max-width: 569px) {
   .profile__container {
+    width: 100%;
     flex-direction: column;
     text-align: center;
   }
@@ -99,6 +119,10 @@
   .profile__name {
     font-size: 22px;
   }
+  .profile__pencil {
+    width: 7.5px;
+    height: 7.5px;
+  }
 
   .profile__role {
     font-size: 14px;
@@ -106,5 +130,6 @@
 
   .profile__add-button {
     width: 100%;
+    min-height: 50px;
   }
 }
