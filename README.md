@@ -1,23 +1,28 @@
-# Project 3: Around The U.S.
+# Around The U.S.: Build with HTML and CSS
 
 ## Take a look at the final results at:  https://randypol.github.io/se_project_aroundtheus/
 
 ### Overview  
 
 * Intro  
-* Figma  
+* Figma
+* Technique  
 * Images  
   
 **Intro**
   
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
+This project is called “Around The U.S.,” which strictly follows the requirements based on a Figma design for mobile (320px) and desktop (1280px). The webpage is responsive to the browser window’s width, preventing horizontal scrolling. So all popular screen sizes will be displayed correctly. 
+
+**Key Technique Used**
+
+The project used different techniques to achieve the Figma requirements. In particular, in places where the text was too long for the container’s width, which resulted in a block overflow, we accounted for this using the CSS properties text-overflow: ellipsis. Further, we added the white space to “nowrap” and the overflow to hidden. By doing this, our project was able to adapt to the browser’s width without any text overflow.
   
 **Figma**  
-  
+You can find the Figma designs in the following link:
 * [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)  
   
 **Images**  
   
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
+Preview of the end product.
   
-Good luck and have fun!
+![Around The U.S. Preview](/images/MAINPAGE.jpg)

@@ -3,23 +3,11 @@
   margin-bottom: 51px;
 }
 
-@media screen and (max-width: 949px) {
-  .content__column {
-    margin: 0;
-    width: calc((100% - 34px) / 2);
-  }
-}
 
 @media screen and (max-width: 569px) {
   .main__profile {
     box-sizing: border-box;
     margin-top: 42px;
     margin-bottom: 36px;
-  }
-
-  .main__columns {
-    flex-direction: column;
-    min-width: 282px;
-    row-gap: 20px;
   }
 }

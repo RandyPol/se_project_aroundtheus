@@ -32,7 +32,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 196px;
+  max-width: 373px;
 }
 
 .profile__name-edit {
@@ -63,6 +63,11 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 1.22;
+  max-width: 415px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .profile__add-icon {
