@@ -5,6 +5,7 @@
 .card__column-image {
   display: block;
   width: 100%;
+  border-radius: 10px 10px 0px 0px;
 }
 
 .card__container-titleicon {
@@ -35,6 +36,7 @@
   box-sizing: border-box;
   border: none;
   margin-left: auto;
+  cursor: pointer;
 }
 .card__heart-icon {
   display: flex;
@@ -55,8 +57,5 @@
 @media screen and (max-width: 569px) {
   .card {
     width: 100%;
-  }
-  .card__column-image {
-    border-radius: 10px 10px 0px 0px;
   }
 }
