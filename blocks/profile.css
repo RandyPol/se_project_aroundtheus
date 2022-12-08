@@ -28,6 +28,11 @@
   font-weight: 500;
   font-size: 42px;
   line-height: 1.14;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 196px;
 }
 
 .profile__name-edit {
@@ -126,7 +131,6 @@
     align-items: center;
     width: 18px;
     height: 18px;
-
   }
 
   .profile__pencil {
