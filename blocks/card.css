@@ -28,7 +28,7 @@
   text-overflow: ellipsis;
 }
 
-.card_heart-button {
+.card__heart-button {
   padding: 0;
   margin: 0;
   text-decoration: none;
