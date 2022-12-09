@@ -14,11 +14,13 @@
   border-radius: 50%;
   margin-right: 30px;
 }
+
 .profile__name-container {
   display: flex;
   column-gap: 18px;
   margin-bottom: 16px;
   align-items: center;
+  justify-content: center;
 }
 
 .profile__name {
@@ -56,7 +58,7 @@
 }
 
 .profile__role {
-  margin: 0;
+  margin: 0 auto;
 
   font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
@@ -104,9 +106,13 @@
   .profile__name {
     font-size: 20px;
   }
+}
+@media screen and (max-width: 620px) {
+  .profile__name {
+    font-size: 20px;
+  }
   .profile__add-button {
-    width: 100px;
-    height: 40px;
+    min-width: 115px;
   }
 }
 
@@ -128,6 +134,7 @@
 
   .profile__name {
     font-size: 22px;
+    max-width: 196px;
   }
 
   .profile__name-edit {
@@ -145,6 +152,7 @@
 
   .profile__role {
     font-size: 14px;
+    max-width: 282px;
   }
 
   .profile__add-button {
