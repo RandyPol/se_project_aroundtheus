@@ -65,6 +65,7 @@
 
   cursor: pointer;
 }
+
 .form__button[type='button'] {
   position: absolute;
   top: -48px;
@@ -84,6 +85,44 @@
   display: flex;
 }
 
-.form__close {
+.form__close:hover {
   opacity: 0.6;
+}
+
+@media screen and (max-width: 569px) {
+  .form {
+    padding: 25px 22px 25px;
+    width: 100%;
+    max-width: 282px;
+    box-sizing: border-box;
+    background-color: #fff;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+  }
+
+  .form__title {
+    font-size: 18px;
+    margin: 0;
+    margin-bottom: 75px;
+  }
+
+  .form__input[id='aboutMe'] {
+    margin-bottom: 45px;
+  }
+
+  .form__button {
+    height: 46px;
+    font-size: 14px;
+  }
+
+  .form__button[type='button'] {
+    top: -48px;
+    right: 0;
+    height: fit-content;
+  }
+
+  .form__close {
+    width: 26px;
+    height: 26px;
+  }
 }
