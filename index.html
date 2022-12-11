@@ -13,6 +13,42 @@
   </head>
   <body class="body">
     <div class="page">
+      <!-- Modal -->
+      <div class="modal modal_opened">
+        <!-- Form -->
+        <form action="#" class="form modal__container">
+          <h1 class="form__title">Edit profile</h1>
+          <fieldset class="form__fieldset">
+            <input
+              type="text"
+              class="form__input"
+              id="name"
+              name="name"
+              placeholder="Name"
+            />
+            <input
+              type="text"
+              class="form__input"
+              id="aboutMe"
+              name="aboutMe"
+              placeholder="About me"
+            />
+          </fieldset>
+          <fieldset class="form__fieldset">
+            <button aria-label="submit" type="submit" class="form__button">
+              Save
+            </button>
+            <!-- class="profile__name-edit"  -->
+            <button aria-label="exit" class="form__button" type="button">
+              <img
+                src="./images/CloseIcon.svg"
+                alt="Close icon"
+                class="form__close"
+              />
+            </button>
+          </fieldset>
+        </form>
+      </div>
       <header class="header">
         <div class="header__container">
           <img
