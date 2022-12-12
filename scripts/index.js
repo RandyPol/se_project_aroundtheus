@@ -24,3 +24,15 @@ let initialCards = [
     link: 'https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg',
   },
 ]
+
+let profileEdit = document.querySelector('.profile__name-edit')
+let closeModal = document.querySelector('.form__close')
+let modalBlock = document.querySelector('.modal')
+
+profileEdit.addEventListener('click', (event) => {
+  modalBlock.classList.add('modal_opened')
+})
+
+closeModal.addEventListener('click', () => {
+  modalBlock.classList.remove('modal_opened')
+})
