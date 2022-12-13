@@ -66,3 +66,26 @@ function handleProfileFormSubmit(evt) {
 }
 
 formElement.addEventListener('submit', handleProfileFormSubmit)
+
+// Cards container
+let cardsContainer = document.querySelector('.cards')
+
+// Card Template
+let cardTemplate = document.querySelector('#card').content
+
+function getCardElement(data) {
+  let cardElement = cardTemplate.querySelector('.card').cloneNode(true)
+
+  // Add Content
+  cardElement.querySelector('.card__column-image').src = data.link
+  cardElement.querySelector('.card__column-image').alt = data.name
+  cardElement.querySelector('.card__column-image-title').textContent = data.name
+
+  return cardElement
+}
+
+for (let i = 0; i < initialCards.length; i++) {
+  let createCard = getCardElement(initialCards[i])
+  // Add to the cards container
+  cardsContainer.append(createCard)
+}
