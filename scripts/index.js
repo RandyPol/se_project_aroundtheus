@@ -29,17 +29,40 @@ let profileEdit = document.querySelector('.profile__name-edit')
 let closeModal = document.querySelector('.form__close')
 let modalBlock = document.querySelector('.modal')
 
+// Form
+let formElement = document.querySelector('.form')
+
+// find the form fields in the DOM
+let nameInput = document.querySelector('.form__input[id="name"]')
+let roleInput = document.querySelector('.form__input[id="aboutMe"]')
+
+// Profile textcontent on html
+let profileName = document.querySelector('.profile__name')
+let profileRole = document.querySelector('.profile__role')
+
 profileEdit.addEventListener('click', (event) => {
   modalBlock.classList.add('modal_opened')
+  nameInput.value = profileName.textContent
+  roleInput.value = profileRole.textContent
 })
 
 closeModal.addEventListener('click', () => {
   modalBlock.classList.remove('modal_opened')
 })
 
-let nameInput = document.querySelector('.form__input[id="name"]')
-let roleInput = document.querySelector('.form__input[id="aboutMe"]')
-let profileName = document.querySelector('.profile__name')
-let profileRole = document.querySelector('.profile__role')
-nameInput.value = profileName.textContent
-roleInput.value = profileRole.textContent
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault()
+
+  // get the values of each field from the value property
+  // of the corresponding input element
+
+  // insert new values into the textContent property of the
+  // corresponding profile elements
+  profileName.textContent = nameInput.value
+  profileRole.textContent = roleInput.value
+
+  // Close the modal after save
+  modalBlock.classList.remove('modal_opened')
+}
+
+formElement.addEventListener('submit', handleProfileFormSubmit)
