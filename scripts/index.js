@@ -25,14 +25,3 @@ let initialCards = [
   },
 ]
 
-let profileEdit = document.querySelector('.profile__name-edit')
-let closeModal = document.querySelector('.form__close')
-let modalBlock = document.querySelector('.modal')
-
-profileEdit.addEventListener('click', (event) => {
-  modalBlock.classList.add('modal_opened')
-})
-
-closeModal.addEventListener('click', () => {
-  modalBlock.classList.remove('modal_opened')
-})
