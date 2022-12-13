@@ -36,3 +36,10 @@ profileEdit.addEventListener('click', (event) => {
 closeModal.addEventListener('click', () => {
   modalBlock.classList.remove('modal_opened')
 })
+
+let nameInput = document.querySelector('.form__input[id="name"]')
+let roleInput = document.querySelector('.form__input[id="aboutMe"]')
+let profileName = document.querySelector('.profile__name')
+let profileRole = document.querySelector('.profile__role')
+nameInput.value = profileName.textContent
+roleInput.value = profileRole.textContent
