@@ -1,4 +1,4 @@
-let initialCards = [
+const initialCards = [
   {
     name: 'Yosemite Valley',
     link: 'https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg',
@@ -25,20 +25,25 @@ let initialCards = [
   },
 ]
 
-let profileEdit = document.querySelector('.profile__name-edit')
-let closeModal = document.querySelector('.form__close')
-let modalBlock = document.querySelector('.modal')
+const profileEdit = document.querySelector('.profile__name-edit')
+const closeModal = document.querySelector('.form__close')
+const modalBlock = document.querySelector('.modal')
+
+// Close Popup Function
+function closePopup() {
+  modalBlock.classList.remove('modal_opened')
+}
 
 // Form
-let formElement = document.querySelector('.form')
+const formElement = document.querySelector('.form')
 
 // find the form fields in the DOM
-let nameInput = document.querySelector('.form__input[id="name"]')
-let roleInput = document.querySelector('.form__input[id="aboutMe"]')
+const nameInput = document.querySelector('.form__input[id="name"]')
+const roleInput = document.querySelector('.form__input[id="aboutMe"]')
 
 // Profile textcontent on html
-let profileName = document.querySelector('.profile__name')
-let profileRole = document.querySelector('.profile__role')
+const profileName = document.querySelector('.profile__name')
+const profileRole = document.querySelector('.profile__role')
 
 profileEdit.addEventListener('click', (event) => {
   modalBlock.classList.add('modal_opened')
@@ -47,7 +52,7 @@ profileEdit.addEventListener('click', (event) => {
 })
 
 closeModal.addEventListener('click', () => {
-  modalBlock.classList.remove('modal_opened')
+  closePopup()
 })
 
 function handleProfileFormSubmit(evt) {
@@ -62,30 +67,30 @@ function handleProfileFormSubmit(evt) {
   profileRole.textContent = roleInput.value
 
   // Close the modal after save
-  modalBlock.classList.remove('modal_opened')
+  closePopup()
 }
 
 formElement.addEventListener('submit', handleProfileFormSubmit)
 
 // Cards container
-let cardsContainer = document.querySelector('.cards')
+const cardsContainer = document.querySelector('.cards')
 
 // Card Template
-let cardTemplate = document.querySelector('#card').content
+const cardTemplate = document.querySelector('#card').content
 
 function getCardElement(data) {
   let cardElement = cardTemplate.querySelector('.card').cloneNode(true)
 
   // Add Content
-  cardElement.querySelector('.card__column-image').src = data.link
-  cardElement.querySelector('.card__column-image').alt = data.name
+  const cardElementImage = cardElement.querySelector('.card__column-image')
+  cardElementImage.src = data.link
+  cardElementImage.alt = data.name
   cardElement.querySelector('.card__column-image-title').textContent = data.name
 
   return cardElement
 }
 
-for (let i = 0; i < initialCards.length; i++) {
-  let createCard = getCardElement(initialCards[i])
-  // Add to the cards container
+initialCards.forEach((cardData) => {
+  let createCard = getCardElement(cardData)
   cardsContainer.append(createCard)
-}
+})
