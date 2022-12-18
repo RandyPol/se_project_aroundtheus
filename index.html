@@ -37,7 +37,7 @@
                 <h1 class="profile__name">Jacques Cousteau</h1>
                 <button
                   aria-label="edit"
-                  class="profile__name-edit"
+                  class="profile__name-edit profile__button"
                   type="button"
                 >
                   <img
@@ -50,7 +50,7 @@
               <p class="profile__role">Explorer</p>
             </div>
 
-            <button aria-label="add" type="button" class="profile__add-button">
+            <button aria-label="add" type="button" class="profile__add-button profile__button">
               <img
                 src="./images/add-button.svg"
                 alt="Add icon"
@@ -86,7 +86,7 @@
         <p class="footer__copyright">© 2022 Around The U.S.</p>
       </footer>
       <!-- Modal -->
-      <div class="modal">
+      <div class="modal" id="modalEdit">
         <!-- Form -->
         <form action="#" class="form modal__container">
           <h1 class="form__title">Edit profile</h1>
@@ -111,7 +111,51 @@
               Save
             </button>
             <!-- class="profile__name-edit"  -->
-            <button aria-label="exit" class="form__button" type="button">
+            <button
+              aria-label="exit"
+              class="form__button form__button-close"
+              type="button"
+            >
+              <img
+                src="./images/CloseIcon.svg"
+                alt="Close icon"
+                class="form__close"
+              />
+            </button>
+          </fieldset>
+        </form>
+      </div>
+      <!-- Add Card Modal -->
+      <div class="modal" id="modalAdd">
+        <!-- Form -->
+        <form action="#" class="form modal__container">
+          <h1 class="form__title">New Place</h1>
+          <fieldset class="form__fieldset">
+            <input
+              type="text"
+              class="form__input"
+              id="title"
+              name="title"
+              placeholder="Title"
+            />
+            <input
+              type="text"
+              class="form__input"
+              id="imageLink"
+              name="imageLink"
+              placeholder="Image link"
+            />
+          </fieldset>
+          <fieldset class="form__fieldset">
+            <button aria-label="submit" type="submit" class="form__button">
+              Create
+            </button>
+
+            <button
+              aria-label="exit"
+              class="form__button form__button-close"
+              type="button"
+            >
               <img
                 src="./images/CloseIcon.svg"
                 alt="Close icon"

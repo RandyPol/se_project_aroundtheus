@@ -25,52 +25,85 @@ const initialCards = [
   },
 ]
 
-const profileEdit = document.querySelector('.profile__name-edit')
-const closeModal = document.querySelector('.form__close')
-const modalBlock = document.querySelector('.modal')
-
-// Close Popup Function
-function closePopup() {
-  modalBlock.classList.remove('modal_opened')
-}
-
-// Form
-const formElement = document.querySelector('.form')
-
 // find the form fields in the DOM
 const nameInput = document.querySelector('.form__input[id="name"]')
 const roleInput = document.querySelector('.form__input[id="aboutMe"]')
 
-// Profile textcontent on html
-const profileName = document.querySelector('.profile__name')
-const profileRole = document.querySelector('.profile__role')
+// Add click event listner for all open button
+const allModalOpenButton = document.querySelectorAll('.profile__button')
+allModalOpenButton.forEach((openButton) =>
+  openButton.addEventListener('click', (event) => {
+    if (event.currentTarget.classList.contains('profile__name-edit')) {
+      const modalEdit = document.querySelector('#modalEdit')
+      nameInput.value = document.querySelector('.profile__name').textContent
+      roleInput.value = document.querySelector('.profile__role').textContent
+      modalEdit.classList.add('modal_opened')
+      return
+    }
+    const modalAdd = document.querySelector('#modalAdd')
+    modalAdd.classList.add('modal_opened')
+    console.log("Ass")
+  })
+)
 
-profileEdit.addEventListener('click', (event) => {
-  modalBlock.classList.add('modal_opened')
-  nameInput.value = profileName.textContent
-  roleInput.value = profileRole.textContent
-})
+// ===> Edit Modal
+// Profile Edit button
+// const profileEditButton = document.querySelector('.profile__name-edit')
+// const modalEdit = document.querySelector('#modalEdit')
 
-closeModal.addEventListener('click', () => {
-  closePopup()
-})
+// // Open Edit Form
+// profileEditButton.addEventListener('click', (event) => {
+//   modalEdit.classList.add('modal_opened')
+//   nameInput.value = profileName.textContent
+//   roleInput.value = profileRole.textContent
+// })
 
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault()
+// ===> Add Modal
+// Add Button
 
+// Open Add Form
+// profileAddButton.addEventListener('click', (event) => {
+//   modalAdd.classList.add('modal_opened')
+// })
+
+// Add click event listner for all close button
+const closeAllModal = document.querySelectorAll('.form__button-close')
+closeAllModal.forEach((closeButton) =>
+  closeButton.addEventListener('click', (event) => {
+    closePopup(event.target.closest('.modal'))
+  })
+)
+
+// const modalAdd = document.querySelector('#modalAdd')
+
+// find the form fields in the DOM
+const titleInput = document.querySelector('.form__input[id="title"]')
+const imageInput = document.querySelector('.form__input[id="imageLink"]')
+
+// General Close Modal Function
+function closePopup(blockModal) {
+  blockModal.classList.remove('modal_opened')
+}
+
+function handleProfileFormSubmit(event) {
+  event.preventDefault()
+  console.log(event.target)
   // get the values of each field from the value property
   // of the corresponding input element
 
   // insert new values into the textContent property of the
   // corresponding profile elements
-  profileName.textContent = nameInput.value
-  profileRole.textContent = roleInput.value
+  // profileName.textContent = nameInput.value
+  // profileRole.textContent = roleInput.value
 
   // Close the modal after save
-  closePopup()
+  // closePopup()
 }
-
-formElement.addEventListener('submit', handleProfileFormSubmit)
+// Getting all form and adding the submit event listerner
+const formElement = document.querySelectorAll('.form')
+formElement.forEach((form) =>
+  form.addEventListener('submit', handleProfileFormSubmit)
+)
 
 // Cards container
 const cardsContainer = document.querySelector('.cards')
@@ -94,3 +127,6 @@ initialCards.forEach((cardData) => {
   let createCard = getCardElement(cardData)
   cardsContainer.append(createCard)
 })
+
+// Add new card
+const addCardButton = document.querySelector('.profile__add-button')
