@@ -1,6 +1,5 @@
 .cards {
   display: flex;
-  justify-content: space-between;
   width: 100%;
   min-width: 282px;
   flex-wrap: wrap;
