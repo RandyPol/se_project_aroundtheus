@@ -87,8 +87,13 @@ function handleProfileFormSubmit(event) {
 // Getting all form and adding the submit event listerner
 const formElement = document.querySelectorAll('.form')
 formElement.forEach((form) =>
-  form.addEventListener('submit',handleProfileFormSubmit)
+  form.addEventListener('submit', handleProfileFormSubmit)
 )
+
+// HeartIconToggle
+function cardIconToggle(event) {
+  event.target.classList.toggle('card__heart-button_isActive')
+}
 
 // Add cards function
 function addCardElement(data) {
@@ -98,6 +103,10 @@ function addCardElement(data) {
   cardElementImage.src = data.link
   cardElementImage.alt = data.name
   cardElement.querySelector('.card__column-image-title').textContent = data.name
+  // Like feature toggle
+  const heartButton = cardElement.querySelector('.card__heart-button')
+  heartButton.addEventListener('click', cardIconToggle)
+
   cardsContainer.prepend(cardElement)
 }
 

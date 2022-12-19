@@ -30,23 +30,23 @@
 }
 
 .card__heart-button {
-  padding: 0;
+  min-width: 21px;
+  min-height: 19px;
+  padding: 0; 
   margin: 0;
-  text-decoration: none;
-  background-color: transparent;
-  box-sizing: border-box;
+  background: transparent url(../images/card_heart.svg) center no-repeat;
   border: none;
   margin-left: auto;
   cursor: pointer;
+ 
 }
-.card__heart-icon {
-  display: flex;
-  margin: 0;
-  padding: 0;
+.card__heart-button:hover {
+  opacity: 0.5;
 }
 
-.card__heart-icon:hover {
-  opacity: 0.5;
+.card__heart-button_isActive {
+  background: transparent url(../images/card_heart-active.svg) center no-repeat;
+
 }
 
 @media screen and (max-width: 949px) {
