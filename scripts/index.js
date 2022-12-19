@@ -67,15 +67,16 @@ closeAllModal.forEach((closeButton) =>
 
 function handleProfileFormSubmit(event) {
   event.preventDefault()
+
   if (event.target.parentElement.id === 'modalEdit') {
-    profileName.textContent = nameInput.value
-    profileRole.textContent = roleInput.value
+    profileName.textContent = event.target.name.value
+    profileRole.textContent = event.target.aboutMe.value
     closePopup(event.target.closest('.modal'))
     return
   }
   // Adding New Card
-  let name = document.querySelector('#title')
-  let link = document.querySelector('#imageLink')
+  let name = event.target.title
+  let link = event.target.imageLink
   addCardElement({ name: name.value, link: link.value })
   name.value = ''
   link.value = ''
@@ -86,7 +87,7 @@ function handleProfileFormSubmit(event) {
 // Getting all form and adding the submit event listerner
 const formElement = document.querySelectorAll('.form')
 formElement.forEach((form) =>
-  form.addEventListener('submit', handleProfileFormSubmit)
+  form.addEventListener('submit',handleProfileFormSubmit)
 )
 
 // Add cards function
