@@ -97,7 +97,7 @@ function addCardElement(data) {
   cardElementImage.src = data.link
   cardElementImage.alt = data.name
   cardElement.querySelector('.card__column-image-title').textContent = data.name
-  cardsContainer.append(cardElement)
+  cardsContainer.prepend(cardElement)
 }
 
 initialCards.forEach((cardData) => {
