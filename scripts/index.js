@@ -90,13 +90,27 @@ formElement.forEach((form) =>
   form.addEventListener('submit', handleProfileFormSubmit)
 )
 
-// AddCardElement Event Handling Functions
+// AddCardElement Event Handling Function
 const cardIconToggle = (event) => {
   event.target.classList.toggle('card__heart-button_isActive')
 }
-
+// Erase card handling function
 const eraseCard = (event) => {
   event.target.closest('.card').remove()
+}
+
+// Expand image modal handling function
+const exapandImageModal = (event) => {
+  // Insert background image
+  const modalImage = document.querySelector('.modal__picture-full')
+  modalImage.src = event.target.src
+  modalImage.alt = event.target.alt
+
+  const modalParagraph = document.querySelector('.modal__piture-paragraph')
+  modalParagraph.textContent = event.target.alt
+
+  const pictureModal = document.querySelector('#modalPicture')
+  pictureModal.classList.toggle('modal_opened')
 }
 
 // Add cards function
@@ -113,6 +127,8 @@ function addCardElement(data) {
   // Erase card feature
   const trashButton = cardElement.querySelector('.card__trash-button')
   trashButton.addEventListener('click', eraseCard)
+  // Picture full modal
+  cardElementImage.addEventListener('click', exapandImageModal)
 
   cardsContainer.prepend(cardElement)
 }
