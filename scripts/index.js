@@ -90,9 +90,13 @@ formElement.forEach((form) =>
   form.addEventListener('submit', handleProfileFormSubmit)
 )
 
-// HeartIconToggle
-function cardIconToggle(event) {
+// AddCardElement Event Handling Functions
+const cardIconToggle = (event) => {
   event.target.classList.toggle('card__heart-button_isActive')
+}
+
+const eraseCard = (event) => {
+  event.target.closest('.card').remove()
 }
 
 // Add cards function
@@ -106,6 +110,9 @@ function addCardElement(data) {
   // Like feature toggle
   const heartButton = cardElement.querySelector('.card__heart-button')
   heartButton.addEventListener('click', cardIconToggle)
+  // Erase card feature
+  const trashButton = cardElement.querySelector('.card__trash-button')
+  trashButton.addEventListener('click', eraseCard)
 
   cardsContainer.prepend(cardElement)
 }
