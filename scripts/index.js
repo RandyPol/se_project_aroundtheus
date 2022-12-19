@@ -74,9 +74,13 @@ function handleProfileFormSubmit(event) {
     return
   }
   // Adding New Card
-  const name = document.querySelector('#title').value
-  const link = document.querySelector('#imageLink').value
-  addCardElement({ name, link })
+  let name = document.querySelector('#title')
+  let link = document.querySelector('#imageLink')
+  addCardElement({ name: name.value, link: link.value })
+  name.value = ''
+  link.value = ''
+
+  closePopup(event.target.closest('.modal'))
 }
 
 // Getting all form and adding the submit event listerner
