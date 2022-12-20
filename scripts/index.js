@@ -92,7 +92,7 @@ const handleCardFormSubmit = (event) => {
 
   const name = event.target.title
   const link = event.target.imageLink
-  addCardElement({ name: name.value, link: link.value })
+  addCardElement(createCard({ name: name.value, link: link.value }))
   event.target.reset()
 
   closePopup(event.target.closest('.modal'))
@@ -127,8 +127,8 @@ const exapandImageModal = (event) => {
 }
 
 // Add cards function
-function addCardElement(data) {
-  let cardElement = cardTemplate.querySelector('.card').cloneNode(true)
+function createCard(data) {
+  const cardElement = cardTemplate.querySelector('.card').cloneNode(true)
   // Add Content
   const cardElementImage = cardElement.querySelector('.card__column-image')
   cardElementImage.src = data.link
@@ -143,9 +143,12 @@ function addCardElement(data) {
   // Picture full modal
   cardElementImage.addEventListener('click', exapandImageModal)
 
-  cardsContainer.prepend(cardElement)
+  return cardElement
 }
 
-initialCards.forEach((cardData) => {
-  addCardElement(cardData)
-})
+// Prepra create card into the cards containers
+function addCardElement(cardCreate) {
+  cardsContainer.prepend(cardCreate)
+}
+
+initialCards.forEach((cardData) => addCardElement(createCard(cardData)))
