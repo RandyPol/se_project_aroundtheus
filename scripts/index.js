@@ -33,10 +33,16 @@ const profileOpenButton = document.querySelector('.profile__name-edit')
 const modalAdd = document.querySelector('#modalAdd')
 const modalAddOpenButton = document.querySelector('.profile__add-button')
 
+// Picture expanded modal | Modal Card Image | Paragraph text
+const pictureModal = document.querySelector('#modalPicture')
+const modalImage = document.querySelector('.modal__picture-full')
+const modalParagraph = document.querySelector('.modal__piture-paragraph')
+
 // Cards container
 const cardsContainer = document.querySelector('.cards')
 // Card Template
 const cardTemplate = document.querySelector('#card').content
+
 // find the form fields in the DOM
 const nameInput = document.querySelector('#name')
 const roleInput = document.querySelector('#aboutMe')
@@ -111,14 +117,12 @@ const eraseCard = (event) => {
 // Expand image modal handling function
 const exapandImageModal = (event) => {
   // Insert background image
-  const modalImage = document.querySelector('.modal__picture-full')
   modalImage.src = event.target.src
   modalImage.alt = event.target.alt
 
-  const modalParagraph = document.querySelector('.modal__piture-paragraph')
+  // Modal paragraph text
   modalParagraph.textContent = event.target.alt
-
-  const pictureModal = document.querySelector('#modalPicture')
+  // Modal open
   pictureModal.classList.toggle('modal_opened')
 }
 
