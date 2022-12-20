@@ -70,34 +70,37 @@ closeAllModal.forEach((closeButton) =>
   })
 )
 
-// Handleing submit function
-function handleProfileFormSubmit(event) {
+// Handling submit function for modal profile edit
+const handleProfileFormSubmit = (event) => {
   event.preventDefault()
 
-  if (event.target.parentElement.id === 'modalEdit') {
-    profileName.textContent = event.target.name.value
-    profileRole.textContent = event.target.aboutMe.value
-    closePopup(event.target.closest('.modal'))
-    return
-  }
-  // Adding New Card
-  let name = event.target.title
-  let link = event.target.imageLink
-  addCardElement({ name: name.value, link: link.value })
-  name.value = ''
-  link.value = ''
+  profileName.textContent = event.target.name.value
+  profileRole.textContent = event.target.aboutMe.value
 
   closePopup(event.target.closest('.modal'))
 }
 
-// Getting all form and adding the submit event listerner
-const formElement = document.querySelectorAll('.form')
-formElement.forEach((form) =>
-  form.addEventListener('submit', handleProfileFormSubmit)
-)
+// Handling submit function for modal profile edit
+const handleCardFormSubmit = (event) => {
+  event.preventDefault()
+
+  const name = event.target.title
+  const link = event.target.imageLink
+  addCardElement({ name: name.value, link: link.value })
+  event.target.reset()
+
+  closePopup(event.target.closest('.modal'))
+}
+
+// Add event listener to edit submit form
+modalEdit
+  .querySelector('.form')
+  .addEventListener('submit', handleProfileFormSubmit)
+// Add event listener to add card form
+modalAdd.querySelector('.form').addEventListener('submit', handleCardFormSubmit)
 
 // AddCardElement Event Handling Function
-const cardIconToggle = (event) => {
+const toggleLike = (event) => {
   event.target.classList.toggle('card__heart-button_isActive')
 }
 // Erase card handling function
@@ -129,7 +132,7 @@ function addCardElement(data) {
   cardElement.querySelector('.card__column-image-title').textContent = data.name
   // Like feature toggle
   const heartButton = cardElement.querySelector('.card__heart-button')
-  heartButton.addEventListener('click', cardIconToggle)
+  heartButton.addEventListener('click', toggleLike)
   // Erase card feature
   const trashButton = cardElement.querySelector('.card__trash-button')
   trashButton.addEventListener('click', eraseCard)
