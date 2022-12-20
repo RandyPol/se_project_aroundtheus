@@ -32,14 +32,7 @@
   opacity: 0.8;
 }
 
-.button__close {
-  width: 40px;
-  height: 40px;
-  display: flex;
-}
-.button__close:hover {
-  opacity: 0.6;
-}
+
 
 @media screen and (max-width: 569px) {
   .button {
@@ -51,10 +44,5 @@
     top: -48px;
     right: 0;
     height: fit-content;
-  }
-
-  .button__close {
-    width: 26px;
-    height: 26px;
   }
 }

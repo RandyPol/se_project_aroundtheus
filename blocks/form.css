@@ -79,16 +79,6 @@
   opacity: 0.8;
 }
 
-.form__close {
-  width: 40px;
-  height: 40px;
-  display: flex;
-}
-
-.form__close:hover {
-  opacity: 0.6;
-}
-
 @media screen and (max-width: 569px) {
   .form {
     padding: 25px 22px 25px;
@@ -119,10 +109,5 @@
     top: -48px;
     right: 0;
     height: fit-content;
-  }
-
-  .form__close {
-    width: 26px;
-    height: 26px;
   }
 }
