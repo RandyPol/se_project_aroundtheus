@@ -123,7 +123,7 @@ const exapandImageModal = (event) => {
   // Modal paragraph text
   modalParagraph.textContent = event.target.alt
   // Modal open
-  pictureModal.classList.toggle('modal_opened')
+  openPopup(pictureModal)
 }
 
 // Add cards function
