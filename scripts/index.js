@@ -25,37 +25,42 @@ const initialCards = [
   },
 ]
 
+// The profile edit modal | Button
+const modalEdit = document.querySelector('#modalEdit')
+const profileOpenButton = document.querySelector('.profile__name-edit')
+
+// The profile add modal | Button
+const modalAdd = document.querySelector('#modalAdd')
+const modalAddOpenButton = document.querySelector('.profile__add-button')
+
 // Cards container
 const cardsContainer = document.querySelector('.cards')
 // Card Template
 const cardTemplate = document.querySelector('#card').content
-
 // find the form fields in the DOM
 const nameInput = document.querySelector('#name')
 const roleInput = document.querySelector('#aboutMe')
 const profileName = document.querySelector('.profile__name')
 const profileRole = document.querySelector('.profile__role')
 
+// General Open Modal Function
+function openPopup(blockModal) {
+  blockModal.classList.toggle('modal_opened')
+}
 // General Close Modal Function
 function closePopup(blockModal) {
-  blockModal.classList.remove('modal_opened')
+  blockModal.classList.toggle('modal_opened')
 }
 
-// Add click event listner for all modal open button
-const allModalOpenButton = document.querySelectorAll('.profile__button')
-allModalOpenButton.forEach((openButton) =>
-  openButton.addEventListener('click', (event) => {
-    if (event.currentTarget.classList.contains('profile__name-edit')) {
-      const modalEdit = document.querySelector('#modalEdit')
-      nameInput.value = profileName.textContent
-      roleInput.value = profileRole.textContent
-      modalEdit.classList.add('modal_opened')
-      return
-    }
-    const modalAdd = document.querySelector('#modalAdd')
-    modalAdd.classList.add('modal_opened')
-  })
-)
+// Open modal event listeners
+profileOpenButton.addEventListener('click', (event) => {
+  nameInput.value = profileName.textContent
+  roleInput.value = profileRole.textContent
+  openPopup(modalEdit)
+})
+modalAddOpenButton.addEventListener('click', (event) => {
+  openPopup(modalAdd)
+})
 
 // Add click event listner for all close button
 const closeAllModal = document.querySelectorAll('.modal__button-close')
@@ -65,6 +70,7 @@ closeAllModal.forEach((closeButton) =>
   })
 )
 
+// Handleing submit function
 function handleProfileFormSubmit(event) {
   event.preventDefault()
 
