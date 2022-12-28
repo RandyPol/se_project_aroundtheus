@@ -50,11 +50,7 @@
               <p class="profile__role">Explorer</p>
             </div>
 
-            <button
-              aria-label="add"
-              type="button"
-              class="profile__add-button"
-            >
+            <button aria-label="add" type="button" class="profile__add-button">
               <img
                 src="./images/add-button.svg"
                 alt="Add icon"
@@ -63,6 +59,7 @@
             </button>
           </div>
         </section>
+        <!-- Cards Section -->
         <section class="cards">
           <!-- Card Template -->
           <template id="card">
@@ -85,32 +82,53 @@
           </template>
         </section>
       </main>
+      <!-- Footer Section -->
       <footer class="footer page__footer">
         <p class="footer__copyright">© 2022 Around The U.S.</p>
       </footer>
-      <!-- Modal -->
+      <!-- Profile Modal -->
       <div class="modal" id="modalEdit">
         <!-- Form -->
-        <form action="#" class="form modal__container">
+        <form action="#" class="form modal__container" novalidate>
           <h1 class="form__title">Edit profile</h1>
           <fieldset class="form__fieldset">
-            <input
-              type="text"
-              class="form__input"
-              id="name"
-              name="name"
-              placeholder="Name"
-            />
-            <input
-              type="text"
-              class="form__input"
-              id="aboutMe"
-              name="aboutMe"
-              placeholder="About me"
-            />
+            <label class="form__field">
+              <input
+                type="text"
+                class="form__input"
+                id="name"
+                name="name"
+                placeholder="Name"
+                minlength="2"
+                maxlength="40"
+                required
+              />
+              <span class="form__input-error name-input-error"
+                >Hello This is an Error</span
+              >
+            </label>
+            <label class="form__field">
+              <input
+                type="text"
+                class="form__input"
+                id="aboutMe"
+                name="aboutMe"
+                placeholder="About me"
+                minlength="2"
+                maxlength="200"
+                required
+              />
+              <span class="form__input-error aboutMe-input-error"
+                >Hello This is an Error</span
+              >
+            </label>
           </fieldset>
           <fieldset class="form__fieldset">
-            <button aria-label="submit" type="submit" class="form__button">
+            <button
+              aria-label="submit"
+              type="submit"
+              class="form__button form__submit"
+            >
               Save
             </button>
             <!-- class="profile__name-edit"  -->
@@ -122,7 +140,7 @@
               <img
                 src="./images/CloseIcon.svg"
                 alt="Close icon"
-                class="modal__close "
+                class="modal__close"
               />
             </button>
           </fieldset>
@@ -131,26 +149,44 @@
       <!-- Add Card Modal -->
       <div class="modal" id="modalAdd">
         <!-- Form -->
-        <form action="#" class="form modal__container">
+        <form action="#" class="form modal__container" novalidate>
           <h1 class="form__title">New Place</h1>
           <fieldset class="form__fieldset">
-            <input
-              type="text"
-              class="form__input"
-              id="title"
-              name="title"
-              placeholder="Title"
-            />
-            <input
-              type="text"
-              class="form__input"
-              id="imageLink"
-              name="imageLink"
-              placeholder="Image link"
-            />
+            <label class="form__field">
+              <input
+                type="text"
+                class="form__input"
+                id="title"
+                name="title"
+                placeholder="Title"
+                minlength="1"
+                maxlength="30"
+                required
+              />
+              <span class="form__input-error title-input-error"
+                >Hello This is an Error</span
+              >
+            </label>
+            <label class="form__field">
+              <input
+                type="url"
+                class="form__input"
+                id="imageLink"
+                name="imageLink"
+                placeholder="Image link"
+                required
+              />
+              <span class="form__input-error imageLink-input-error"
+                >Hello This is an Error</span
+              >
+            </label>
           </fieldset>
           <fieldset class="form__fieldset">
-            <button aria-label="submit" type="submit" class="form__button">
+            <button
+              aria-label="submit"
+              type="submit"
+              class="form__button form__submit"
+            >
               Create
             </button>
 
@@ -162,7 +198,7 @@
               <img
                 src="./images/CloseIcon.svg"
                 alt="Close icon"
-                class="modal__close "
+                class="modal__close"
               />
             </button>
           </fieldset>
@@ -173,7 +209,11 @@
         <div class="modal__container">
           <img class="modal__picture-full" src="#" alt="expandedImage" />
           <p class="modal__piture-paragraph"></p>
-          <button aria-label="exit" class="button modal__button-close" type="button">
+          <button
+            aria-label="exit"
+            class="button modal__button-close"
+            type="button"
+          >
             <img
               src="./images/CloseIcon.svg"
               alt="Close icon"
@@ -184,5 +224,6 @@
       </div>
     </div>
     <script src="scripts/index.js "></script>
+    <script src="scripts/validate.js "></script>
   </body>
 </html>

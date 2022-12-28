@@ -27,12 +27,21 @@
   border: none;
 }
 
+.form__field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.form__field:last-of-type {
+  margin-bottom: 48px;
+}
+
 .form__input {
   padding: 0;
   padding-bottom: 13px;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  margin-bottom: 30px;
 
   font-family: 'Inter';
   font-style: normal;
@@ -41,8 +50,25 @@
   line-height: 1.2;
 }
 
-.form__input[id='aboutMe'] {
-  margin-bottom: 48px;
+.form__input_type_error {
+  border-bottom: 1px solid #ff0000;
+}
+
+.form__input-error {
+  display: none;
+  width: 164px;
+  margin-top: 5px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.form__input-error_active {
+  display: block;
+  color: #ff0000;
 }
 
 .form__button {
@@ -77,6 +103,16 @@
 
 .form__button:hover {
   opacity: 0.8;
+}
+
+.form__button_inactive{
+  opacity: 0.2;
+  border: 1px solid #000000;
+  border-radius: 2px;
+  color: #000000;
+  background: #F7F7F7;
+
+  pointer-events: none;
 }
 
 @media screen and (max-width: 569px) {
