@@ -57,3 +57,14 @@ const enableValidation = () => {
 }
 
 enableValidation()
+
+// Resetting Form Validation After Close
+export const resetValidation = (formElement) => {
+  formElement.reset()
+
+  // Clear any error messages and styles
+  const inputList = Array.from(formElement.querySelectorAll('.form__input'))
+  inputList.forEach((inputElement) => {
+    hideInputError(formElement, inputElement)
+  })
+}

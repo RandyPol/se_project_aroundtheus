@@ -1,3 +1,5 @@
+import { resetValidation } from './validate.js'
+
 const initialCards = [
   {
     name: 'Yosemite Valley',
@@ -72,6 +74,10 @@ modalAddOpenButton.addEventListener('click', (event) => {
 const closeAllModal = document.querySelectorAll('.modal__button-close')
 closeAllModal.forEach((closeButton) =>
   closeButton.addEventListener('click', (event) => {
+    // Calling the resetValidation function from validate.js
+    if (event.target.closest('.form')) {
+      resetValidation(event.target.closest('.form'))
+    }
     closePopup(event.target.closest('.modal'))
   })
 )
@@ -146,7 +152,7 @@ function createCard(data) {
   return cardElement
 }
 
-// Prepra create card into the cards containers
+// Prepare create card into the cards containers
 function addCardElement(cardCreate) {
   cardsContainer.prepend(cardCreate)
 }
