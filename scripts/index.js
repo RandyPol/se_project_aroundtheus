@@ -38,6 +38,14 @@ allModal.forEach((modal) => {
   })
 })
 
+// Overlay close by pressing ESC
+document.addEventListener('keydown', (event) => {
+  if (event.key.toLowerCase() === 'escape') {
+    const theOpenModal = document.querySelector('.modal_opened')
+    closePopup(theOpenModal)
+  }
+})
+
 // The profile edit modal | Button
 const modalEdit = document.querySelector('#modalEdit')
 const profileOpenButton = document.querySelector('.profile__name-edit')
