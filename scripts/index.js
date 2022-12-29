@@ -1,4 +1,4 @@
-import { resetValidation } from './validate.js'
+import { resetValidation, toggleButtonState } from './validate.js'
 
 const initialCards = [
   {
@@ -38,19 +38,21 @@ function closeModalOnRemoteClick(evt) {
 }
 
 // Overlay close by pressing ESC
-document.addEventListener('keydown', (event) => {
-  if (event.key.toLowerCase() === 'escape') {
-    const theOpenModal = document.querySelector('.modal_opened')
-    closePopup(theOpenModal)
+function closeModalEscapeKeydown(event) {
+  if (event.key === 'Escape') {
+    const openedModal = document.querySelector('.modal_opened')
+    closePopup(openedModal)
   }
-})
+}
 
 // The profile edit modal | Button
 const modalEdit = document.querySelector('#modalEdit')
+const modalEditForm = modalEdit.querySelector('.form')
 const profileOpenButton = document.querySelector('.profile__name-edit')
 
 // The card add modal | Button
 const modalAdd = document.querySelector('#modalAdd')
+const modalAddForm = modalAdd.querySelector('.form')
 const modalAddOpenButton = document.querySelector('.profile__add-button')
 
 // Picture expanded modal | Modal Card Image | Paragraph text
@@ -69,29 +71,38 @@ const roleInput = document.querySelector('#aboutMe')
 const profileName = document.querySelector('.profile__name')
 const profileRole = document.querySelector('.profile__role')
 
+// Function to prefill the frm data
+const fillProfileForm = () => {
+  nameInput.value = profileName.textContent
+  roleInput.value = profileRole.textContent
+}
+
 // General Open Modal Function
 function openPopup(blockModal) {
+  // Add Escape keydown
+  document.addEventListener('keydown', closeModalEscapeKeydown)
   // add the mousedown listener to the modal when opening it
   blockModal.addEventListener('mousedown', closeModalOnRemoteClick)
-  blockModal.classList.toggle('modal_opened')
+  blockModal.classList.add('modal_opened')
 }
 // General Close Modal Function
 function closePopup(blockModal) {
+  // Add Escape keydown
+  document.removeEventListener('keydown', closeModalEscapeKeydown)
   // remove the mousedown listener from the modal when closing it
   blockModal.removeEventListener('mousedown', closeModalOnRemoteClick)
-  blockModal.classList.toggle('modal_opened')
+  blockModal.classList.remove('modal_opened')
 }
 
 // The profile edit modal | Button listener
 profileOpenButton.addEventListener('click', () => {
-  resetValidation(modalEdit.querySelector(".form"))
-  nameInput.value = profileName.textContent
-  roleInput.value = profileRole.textContent
+  resetValidation(modalEdit.querySelector('.form'))
+  fillProfileForm()
   openPopup(modalEdit)
 })
-// The card add modal | Button listerner 
+// The card add modal | Button listerner
 modalAddOpenButton.addEventListener('click', () => {
-  resetValidation(modalAdd.querySelector(".form"))
+  resetValidation(modalAdd.querySelector('.form'))
   openPopup(modalAdd)
 })
 
@@ -99,10 +110,6 @@ modalAddOpenButton.addEventListener('click', () => {
 const closeAllModal = document.querySelectorAll('.modal__button-close')
 closeAllModal.forEach((closeButton) =>
   closeButton.addEventListener('click', (event) => {
-    // Calling the resetValidation function from validate.js
-    if (event.target.closest('.form')) {
-      resetValidation(event.target.closest('.form'))
-    }
     closePopup(event.target.closest('.modal'))
   })
 )
@@ -114,27 +121,29 @@ const handleProfileFormSubmit = (event) => {
   profileName.textContent = event.target.name.value
   profileRole.textContent = event.target.aboutMe.value
 
-  closePopup(event.target.closest('.modal'))
+  closePopup(modalEdit)
 }
 
-// Handling submit function for modal profile edit
+// Handling submit function for modal card add
 const handleCardFormSubmit = (event) => {
   event.preventDefault()
 
   const name = event.target.title
   const link = event.target.imageLink
+  const buttonElement = event.target.querySelector('.form__submit')
   addCardElement(createCard({ name: name.value, link: link.value }))
   event.target.reset()
-
-  closePopup(event.target.closest('.modal'))
+  //Toggle to make the submit button inactive after creating a card
+  toggleButtonState([name, link], buttonElement, {
+    inactiveButtonClass: 'form__button_inactive',
+  })
+  closePopup(modalAdd)
 }
 
 // Add event listener to edit submit form
-modalEdit
-  .querySelector('.form')
-  .addEventListener('submit', handleProfileFormSubmit)
+modalEditForm.addEventListener('submit', handleProfileFormSubmit)
 // Add event listener to add card form
-modalAdd.querySelector('.form').addEventListener('submit', handleCardFormSubmit)
+modalAddForm.addEventListener('submit', handleCardFormSubmit)
 
 // AddCardElement Event Handling Function
 const toggleLike = (event) => {
@@ -164,7 +173,10 @@ function createCard(data) {
   const cardElementImage = cardElement.querySelector('.card__column-image')
   cardElementImage.src = data.link
   cardElementImage.alt = data.name
-  cardElement.querySelector('.card__column-image-title').textContent = data.name
+  const cardElementTitle = cardElement.querySelector(
+    '.card__column-image-title'
+  )
+  cardElementTitle.textContent = data.name
   // Like feature toggle
   const heartButton = cardElement.querySelector('.card__heart-button')
   heartButton.addEventListener('click', toggleLike)
