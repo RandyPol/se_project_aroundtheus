@@ -32,7 +32,8 @@ const allModal = Array.from(document.querySelectorAll('.modal'))
 allModal.forEach((modal) => {
   modal.addEventListener('click', (event) => {
     if (event.target.classList.contains('modal')) {
-      resetValidation(event.currentTarget.querySelector('.modal__container'))
+      const isForm = event.currentTarget.querySelector('.form')
+      isForm ? resetValidation(isForm): '';
       closePopup(event.currentTarget)
     }
   })
