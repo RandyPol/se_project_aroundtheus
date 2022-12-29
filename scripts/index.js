@@ -27,17 +27,15 @@ const initialCards = [
   },
 ]
 
-// Overlay close feature
-const allModal = Array.from(document.querySelectorAll('.modal'))
-allModal.forEach((modal) => {
-  modal.addEventListener('click', (event) => {
-    if (event.target.classList.contains('modal')) {
-      const isForm = event.currentTarget.querySelector('.form')
-      isForm ? resetValidation(isForm): '';
-      closePopup(event.currentTarget)
-    }
-  })
-})
+// Overlay close feature/function
+function closeModalOnRemoteClick(evt) {
+  // target is the element on which the event happened
+  // currentTarget is the popup
+  // if they are the same then we should close the popup
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.target)
+  }
+}
 
 // Overlay close by pressing ESC
 document.addEventListener('keydown', (event) => {
@@ -51,7 +49,7 @@ document.addEventListener('keydown', (event) => {
 const modalEdit = document.querySelector('#modalEdit')
 const profileOpenButton = document.querySelector('.profile__name-edit')
 
-// The profile add modal | Button
+// The card add modal | Button
 const modalAdd = document.querySelector('#modalAdd')
 const modalAddOpenButton = document.querySelector('.profile__add-button')
 
@@ -65,7 +63,7 @@ const cardsContainer = document.querySelector('.cards')
 // Card Template
 const cardTemplate = document.querySelector('#card').content
 
-// find the form fields in the DOM
+// find the form inout_fields in the DOM
 const nameInput = document.querySelector('#name')
 const roleInput = document.querySelector('#aboutMe')
 const profileName = document.querySelector('.profile__name')
@@ -73,20 +71,27 @@ const profileRole = document.querySelector('.profile__role')
 
 // General Open Modal Function
 function openPopup(blockModal) {
+  // add the mousedown listener to the modal when opening it
+  blockModal.addEventListener('mousedown', closeModalOnRemoteClick)
   blockModal.classList.toggle('modal_opened')
 }
 // General Close Modal Function
 function closePopup(blockModal) {
+  // remove the mousedown listener from the modal when closing it
+  blockModal.removeEventListener('mousedown', closeModalOnRemoteClick)
   blockModal.classList.toggle('modal_opened')
 }
 
-// Open modal event listeners
-profileOpenButton.addEventListener('click', (event) => {
+// The profile edit modal | Button listener
+profileOpenButton.addEventListener('click', () => {
+  resetValidation(modalEdit.querySelector(".form"))
   nameInput.value = profileName.textContent
   roleInput.value = profileRole.textContent
   openPopup(modalEdit)
 })
-modalAddOpenButton.addEventListener('click', (event) => {
+// The card add modal | Button listerner 
+modalAddOpenButton.addEventListener('click', () => {
+  resetValidation(modalAdd.querySelector(".form"))
   openPopup(modalAdd)
 })
 
