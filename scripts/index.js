@@ -27,6 +27,16 @@ const initialCards = [
   },
 ]
 
+// Overlay close feature
+const allModal = Array.from(document.querySelectorAll('.modal'))
+allModal.forEach((modal) => {
+  modal.addEventListener('click', (event) => {
+    if (event.target.classList.contains('modal')) {
+      closePopup(event.currentTarget)
+    }
+  })
+})
+
 // The profile edit modal | Button
 const modalEdit = document.querySelector('#modalEdit')
 const profileOpenButton = document.querySelector('.profile__name-edit')
