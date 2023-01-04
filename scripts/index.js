@@ -1,4 +1,4 @@
-import { resetValidation, toggleButtonState } from './validate.js'
+import { resetValidation, toggleButtonState } from './FormValidator.js'
 
 const initialCards = [
   {
