@@ -1,5 +1,13 @@
-import { resetValidation, toggleButtonState } from './FormValidator.js'
+import FormValidator from './FormValidator.js'
 
+const validationSettings = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__submit',
+  inactiveButtonClass: 'form__button_inactive',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active',
+}
 const initialCards = [
   {
     name: 'Yosemite Valley',
@@ -55,6 +63,12 @@ const modalAdd = document.querySelector('#modalAdd')
 const modalAddForm = modalAdd.querySelector('.form')
 const modalAddOpenButton = document.querySelector('.profile__add-button')
 
+// Using Clasess
+const editFormValidator = new FormValidator(validationSettings, modalEditForm)
+editFormValidator.enableValidation()
+const addFormValidator = new FormValidator(validationSettings, modalAddForm)
+addFormValidator.enableValidation()
+
 // Picture expanded modal | Modal Card Image | Paragraph text
 const pictureModal = document.querySelector('#modalPicture')
 const modalImage = document.querySelector('.modal__picture-full')
@@ -96,13 +110,13 @@ function closePopup(blockModal) {
 
 // The profile edit modal | Button listener
 profileOpenButton.addEventListener('click', () => {
-  resetValidation(modalEdit.querySelector('.form'))
+  editFormValidator.resetValidation()
   fillProfileForm()
   openPopup(modalEdit)
 })
 // The card add modal | Button listerner
 modalAddOpenButton.addEventListener('click', () => {
-  resetValidation(modalAdd.querySelector('.form'))
+  addFormValidator.resetValidation()
   openPopup(modalAdd)
 })
 
