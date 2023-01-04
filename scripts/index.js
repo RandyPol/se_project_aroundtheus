@@ -1,13 +1,6 @@
 import FormValidator from './FormValidator.js'
+import Card from './Card.js'
 
-const validationSettings = {
-  formSelector: '.form',
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__submit',
-  inactiveButtonClass: 'form__button_inactive',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error_active',
-}
 const initialCards = [
   {
     name: 'Yosemite Valley',
@@ -63,21 +56,34 @@ const modalAdd = document.querySelector('#modalAdd')
 const modalAddForm = modalAdd.querySelector('.form')
 const modalAddOpenButton = document.querySelector('.profile__add-button')
 
-// Using Clasess
+//
+// Using Clasess for validation
+//
+const validationSettings = {
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__submit',
+  inactiveButtonClass: 'form__button_inactive',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active',
+}
+
 const editFormValidator = new FormValidator(validationSettings, modalEditForm)
 editFormValidator.enableValidation()
 const addFormValidator = new FormValidator(validationSettings, modalAddForm)
 addFormValidator.enableValidation()
+//
+// //
+//
 
 // Picture expanded modal | Modal Card Image | Paragraph text
-const pictureModal = document.querySelector('#modalPicture')
-const modalImage = document.querySelector('.modal__picture-full')
-const modalParagraph = document.querySelector('.modal__piture-paragraph')
+export const pictureModal = document.querySelector('#modalPicture')
+export const modalImage = document.querySelector('.modal__picture-full')
+export const modalParagraph = document.querySelector('.modal__piture-paragraph')
 
 // Cards container
-const cardsContainer = document.querySelector('.cards')
-// Card Template
-const cardTemplate = document.querySelector('#card').content
+export const cardsContainer = document.querySelector('.cards')
+// Card Template Selector
+const cardTemplate = '#card'
 
 // find the form inout_fields in the DOM
 const nameInput = document.querySelector('#name')
@@ -92,7 +98,7 @@ const fillProfileForm = () => {
 }
 
 // General Open Modal Function
-function openPopup(blockModal) {
+export function openPopup(blockModal) {
   // Add Escape keydown
   document.addEventListener('keydown', closeModalEscapeKeydown)
   // add the mousedown listener to the modal when opening it
@@ -144,13 +150,9 @@ const handleCardFormSubmit = (event) => {
 
   const name = event.target.title
   const link = event.target.imageLink
-  const buttonElement = event.target.querySelector('.form__submit')
-  addCardElement(createCard({ name: name.value, link: link.value }))
-  event.target.reset()
-  //Toggle to make the submit button inactive after creating a card
-  toggleButtonState([name, link], buttonElement, {
-    inactiveButtonClass: 'form__button_inactive',
-  })
+  const cardCreated = new Card({ name: name.value, link: link.value }, '#card')
+  addCardElement(cardCreated.generateCard())
+  addFormValidator.resetValidation()
   closePopup(modalAdd)
 }
 
@@ -159,53 +161,12 @@ modalEditForm.addEventListener('submit', handleProfileFormSubmit)
 // Add event listener to add card form
 modalAddForm.addEventListener('submit', handleCardFormSubmit)
 
-// AddCardElement Event Handling Function
-const toggleLike = (event) => {
-  event.target.classList.toggle('card__heart-button_isActive')
-}
-// Erase card handling function
-const eraseCard = (event) => {
-  event.target.closest('.card').remove()
-}
-
-// Expand image modal handling function
-const exapandImageModal = (event) => {
-  // Insert background image
-  modalImage.src = event.target.src
-  modalImage.alt = event.target.alt
-
-  // Modal paragraph text
-  modalParagraph.textContent = event.target.alt
-  // Modal open
-  openPopup(pictureModal)
-}
-
-// Add cards function
-function createCard(data) {
-  const cardElement = cardTemplate.querySelector('.card').cloneNode(true)
-  // Add Content
-  const cardElementImage = cardElement.querySelector('.card__column-image')
-  cardElementImage.src = data.link
-  cardElementImage.alt = data.name
-  const cardElementTitle = cardElement.querySelector(
-    '.card__column-image-title'
-  )
-  cardElementTitle.textContent = data.name
-  // Like feature toggle
-  const heartButton = cardElement.querySelector('.card__heart-button')
-  heartButton.addEventListener('click', toggleLike)
-  // Erase card feature
-  const trashButton = cardElement.querySelector('.card__trash-button')
-  trashButton.addEventListener('click', eraseCard)
-  // Picture full modal
-  cardElementImage.addEventListener('click', exapandImageModal)
-
-  return cardElement
-}
-
 // Prepare create card into the cards containers
 function addCardElement(cardCreate) {
   cardsContainer.prepend(cardCreate)
 }
 
-initialCards.forEach((cardData) => addCardElement(createCard(cardData)))
+initialCards.forEach((cardData) => {
+  const cardCreated = new Card(cardData, '#card')
+  addCardElement(cardCreated.generateCard())
+})
