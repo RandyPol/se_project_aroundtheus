@@ -6,33 +6,7 @@ import {
   handleProfileFormSubmit,
   handleCardFormSubmit,
 } from './utils.js'
-
-const initialCards = [
-  {
-    name: 'Yosemite Valley',
-    link: 'https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg',
-  },
-  {
-    name: 'Lake Louise',
-    link: 'https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg',
-  },
-  {
-    name: 'Bald Mountains',
-    link: 'https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg',
-  },
-  {
-    name: 'Latemar',
-    link: 'https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg',
-  },
-  {
-    name: 'Vanoise National Park',
-    link: 'https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg',
-  },
-  {
-    name: 'Lago di Braies',
-    link: 'https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg',
-  },
-]
+import { initialCards, validationSettings, cardTemplate } from './constants.js'
 
 // The profile edit modal | Button
 const modalEdit = document.querySelector('#modalEdit')
@@ -43,17 +17,6 @@ const profileOpenButton = document.querySelector('.profile__name-edit')
 const modalAdd = document.querySelector('#modalAdd')
 const modalAddForm = modalAdd.querySelector('.form')
 const modalAddOpenButton = document.querySelector('.profile__add-button')
-
-//
-// Using Clasess for validation
-//
-const validationSettings = {
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__submit',
-  inactiveButtonClass: 'form__button_inactive',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error_active',
-}
 
 const editFormValidator = new FormValidator(validationSettings, modalEditForm)
 editFormValidator.enableValidation()
@@ -82,8 +45,6 @@ function handleImageClick() {
 
 // Cards container
 export const cardsContainer = document.querySelector('.cards')
-// Card Template Selector
-const cardTemplate = '#card'
 
 // find the form inout_fields in the DOM
 const nameInput = document.querySelector('#name')
