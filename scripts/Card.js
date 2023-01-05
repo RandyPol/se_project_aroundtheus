@@ -35,14 +35,16 @@ class Card {
     this._cardElementImage.addEventListener('click', this._handleImageClick)
   }
 
-  _handleTrashButtonClick(event) {
+  _handleTrashButtonClick = () => {
     // code for handling trash button click event
-    event.target.closest('.card').remove()
+    this._cardElement.remove()
   }
 
-  _handleHeartButtonClick(event) {
+  // The value of this in a regular class method refers to the object that the event handler is being called on
+  // In this case it will be the hear button
+  _handleHeartButtonClick() {
     // code for handling heart button click event
-    event.target.classList.toggle('card__heart-button_isActive')
+    this.classList.toggle('card__heart-button_isActive')
   }
 
   _handleImageClick(event) {
