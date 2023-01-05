@@ -51,7 +51,7 @@ class Card {
     this._cardElementImage = this._cardElement.querySelector(
       '.card__column-image'
     )
-    this._cardElementTitle = this._cardElement.querySelector(
+    const cardElementTitle = this._cardElement.querySelector(
       '.card__column-image-title'
     )
 
@@ -61,7 +61,7 @@ class Card {
     // Add Content
     this._cardElementImage.alt = this._cardName
     this._cardElementImage.src = this._cardLink
-    this._cardElementTitle.textContent = this._cardName
+    cardElementTitle.textContent = this._cardName
 
     return this._cardElement
   }
