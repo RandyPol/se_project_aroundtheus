@@ -1,6 +1,3 @@
-import Card from './Card.js'
-import { cardsContainer } from './index.js'
-
 // Overlay close feature/function
 export function closeModalOnRemoteClick(evt) {
   // target is the element on which the event happened
@@ -35,30 +32,4 @@ export function openPopup(blockModal) {
   // add the mousedown listener to the modal when opening it
   blockModal.addEventListener('mousedown', closeModalOnRemoteClick)
   blockModal.classList.add('modal_opened')
-}
-
-// Handling submit function for modal profile edit
-export const handleProfileFormSubmit = (event) => {
-  event.preventDefault()
-
-  profileName.textContent = event.target.name.value
-  profileRole.textContent = event.target.aboutMe.value
-
-  closePopup(modalEdit)
-}
-
-// Handling submit function for modal card add
-export const handleCardFormSubmit = (event) => {
-  event.preventDefault()
-
-  const name = event.target.title
-  const link = event.target.imageLink
-  const cardCreated = new Card({ name: name.value, link: link.value }, '#card')
-  addCardElement(cardCreated.generateCard())
-  closePopup(modalAdd)
-}
-
-// Prepare create card into the cards containers
-export function addCardElement(createdCard) {
-  cardsContainer.prepend(createdCard)
 }

@@ -1,12 +1,6 @@
 import FormValidator from './FormValidator.js'
 import Card from './Card.js'
-import {
-  closePopup,
-  openPopup,
-  handleProfileFormSubmit,
-  handleCardFormSubmit,
-  addCardElement,
-} from './utils.js'
+import { closePopup, openPopup } from './utils.js'
 import { initialCards, validationSettings, cardTemplate } from './constants.js'
 
 // The profile edit modal | Button
@@ -50,8 +44,8 @@ export const cardsContainer = document.querySelector('.cards')
 // find the form inout_fields in the DOM
 const nameInput = document.querySelector('#name')
 const roleInput = document.querySelector('#aboutMe')
-const profileName = document.querySelector('.profile__name')
-const profileRole = document.querySelector('.profile__role')
+export const profileName = document.querySelector('.profile__name')
+export const profileRole = document.querySelector('.profile__role')
 
 // Function to prefill the frm data
 const fillProfileForm = () => {
@@ -81,12 +75,42 @@ allModalCloseButton.forEach((closeButton) =>
   })
 )
 
+// Handling submit function for modal profile edit
+export const handleProfileFormSubmit = (event) => {
+  event.preventDefault()
+
+  profileName.textContent = event.target.name.value
+  profileRole.textContent = event.target.aboutMe.value
+
+  closePopup(modalEdit)
+}
+
+// Handling submit function for modal card add
+export const handleCardFormSubmit = (event) => {
+  event.preventDefault()
+
+  const name = event.target.title
+  const link = event.target.imageLink
+  addCardElement(createCard({ name: name.value, link: link.value }, '#card'))
+  closePopup(modalAdd)
+}
+
 // Add event listener to edit submit form
 modalEditForm.addEventListener('submit', handleProfileFormSubmit)
 // Add event listener to add card form
 modalAddForm.addEventListener('submit', handleCardFormSubmit)
 
+// Create a createCard method
+export function createCard(data, cardTemplate, handleImage = handleImageClick) {
+  const card = new Card(data, cardTemplate, handleImage)
+  return card.generateCard()
+}
+
+// Prepare create card into the cards containers
+function addCardElement(createdCard) {
+  cardsContainer.prepend(createdCard)
+}
+
 initialCards.forEach((cardData) => {
-  const cardCreated = new Card(cardData, cardTemplate, handleImageClick)
-  addCardElement(cardCreated.generateCard())
+  addCardElement(createCard(cardData, cardTemplate, handleImageClick))
 })
