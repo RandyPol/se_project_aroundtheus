@@ -1,11 +1,9 @@
-import { pictureModal, modalImage, modalParagraph } from './index.js'
-import { openPopup } from './utils.js'
-
 class Card {
-  constructor(cardData, templateSelector) {
+  constructor(cardData, templateSelector, handleImageClick) {
     this._cardName = cardData.name
     this._cardLink = cardData.link
     this._templateSelector = templateSelector
+    this._handleImageClick = handleImageClick
   }
 
   _getTemplate() {
@@ -45,18 +43,6 @@ class Card {
   _handleHeartButtonClick() {
     // code for handling heart button click event
     this.classList.toggle('card__heart-button_isActive')
-  }
-
-  _handleImageClick(event) {
-    // code for handling image click event
-    // Insert background image
-    modalImage.src = event.target.src
-    modalImage.alt = event.target.alt
-
-    // Modal paragraph text
-    modalParagraph.textContent = event.target.alt
-    // Modal open
-    openPopup(pictureModal)
   }
 
   generateCard() {

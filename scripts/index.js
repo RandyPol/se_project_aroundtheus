@@ -68,6 +68,18 @@ export const pictureModal = document.querySelector('#modalPicture')
 export const modalImage = document.querySelector('.modal__picture-full')
 export const modalParagraph = document.querySelector('.modal__piture-paragraph')
 
+// Image modal function to pass to the card class as an argument
+function handleImageClick() {
+  // code for handling image click event
+  // Insert background image
+  modalImage.src = this.src
+  modalImage.alt = this.alt
+  // Modal paragraph text
+  modalParagraph.textContent = this.alt
+  // Modal open
+  openPopup(pictureModal)
+}
+
 // Cards container
 export const cardsContainer = document.querySelector('.cards')
 // Card Template Selector
@@ -116,6 +128,6 @@ function addCardElement(cardCreate) {
 }
 
 initialCards.forEach((cardData) => {
-  const cardCreated = new Card(cardData, cardTemplate)
+  const cardCreated = new Card(cardData, cardTemplate, handleImageClick)
   addCardElement(cardCreated.generateCard())
 })
