@@ -58,12 +58,14 @@ const fillProfileForm = () => {
   roleInput.value = profileRole.textContent
 }
 
-// The profile edit modal | Button listener
-profileOpenButton.addEventListener('click', () => {
+const handleEditProfileModal = () => {
   editFormValidator.resetValidation()
   fillProfileForm()
   openPopup(modalEdit)
-})
+}
+
+// The profile edit modal | Button listener
+profileOpenButton.addEventListener('click', handleEditProfileModal)
 // The card add modal | Button listerner
 modalAddOpenButton.addEventListener('click', () => {
   addFormValidator.resetValidation()
