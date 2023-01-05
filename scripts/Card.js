@@ -43,6 +43,9 @@ class Card {
   _handleHeartButtonClick() {
     // code for handling heart button click event
     this.classList.toggle('card__heart-button_isActive')
+    // The best thing to do after deleting a card is to remove the link to the DOM element
+    // It helps javascript garbage collector.
+    this._cardElement = null
   }
 
   generateCard() {
