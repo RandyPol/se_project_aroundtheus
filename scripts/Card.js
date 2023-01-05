@@ -1,4 +1,5 @@
-import { pictureModal, modalImage, modalParagraph, openPopup } from './index.js'
+import { pictureModal, modalImage, modalParagraph } from './index.js'
+import { openPopup } from './utils.js'
 
 class Card {
   constructor(cardData, templateSelector) {
