@@ -5,6 +5,7 @@ import {
   openPopup,
   handleProfileFormSubmit,
   handleCardFormSubmit,
+  addCardElement,
 } from './utils.js'
 import { initialCards, validationSettings, cardTemplate } from './constants.js'
 
@@ -84,11 +85,6 @@ closeAllModal.forEach((closeButton) =>
 modalEditForm.addEventListener('submit', handleProfileFormSubmit)
 // Add event listener to add card form
 modalAddForm.addEventListener('submit', handleCardFormSubmit)
-
-// Prepare create card into the cards containers
-function addCardElement(cardCreate) {
-  cardsContainer.prepend(cardCreate)
-}
 
 initialCards.forEach((cardData) => {
   const cardCreated = new Card(cardData, cardTemplate, handleImageClick)

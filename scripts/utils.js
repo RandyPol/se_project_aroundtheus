@@ -1,3 +1,6 @@
+import Card from "./Card.js"
+import {cardsContainer} from "./index.js"
+
 // Overlay close feature/function
 export function closeModalOnRemoteClick(evt) {
   // target is the element on which the event happened
@@ -52,6 +55,10 @@ export const handleCardFormSubmit = (event) => {
   const link = event.target.imageLink
   const cardCreated = new Card({ name: name.value, link: link.value }, '#card')
   addCardElement(cardCreated.generateCard())
-  addFormValidator.resetValidation()
   closePopup(modalAdd)
+}
+
+// Prepare create card into the cards containers
+export function addCardElement(cardCreate) {
+  cardsContainer.prepend(cardCreate)
 }
