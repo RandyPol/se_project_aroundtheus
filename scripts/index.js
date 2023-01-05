@@ -74,8 +74,8 @@ modalAddOpenButton.addEventListener('click', () => {
 })
 
 // Add click event listner for all close button
-const closeAllModal = document.querySelectorAll('.modal__button-close')
-closeAllModal.forEach((closeButton) =>
+const allModalCloseButton = document.querySelectorAll('.modal__button-close')
+allModalCloseButton.forEach((closeButton) =>
   closeButton.addEventListener('click', (event) => {
     closePopup(event.target.closest('.modal'))
   })

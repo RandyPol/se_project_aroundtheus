@@ -1,5 +1,5 @@
-import Card from "./Card.js"
-import {cardsContainer} from "./index.js"
+import Card from './Card.js'
+import { cardsContainer } from './index.js'
 
 // Overlay close feature/function
 export function closeModalOnRemoteClick(evt) {
@@ -59,6 +59,6 @@ export const handleCardFormSubmit = (event) => {
 }
 
 // Prepare create card into the cards containers
-export function addCardElement(cardCreate) {
-  cardsContainer.prepend(cardCreate)
+export function addCardElement(createdCard) {
+  cardsContainer.prepend(createdCard)
 }
