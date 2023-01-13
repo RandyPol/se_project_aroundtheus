@@ -1,4 +1,4 @@
-import Popup from './Popup'
+import Popup from './Popup.js'
 
 export default class PopupWithForm extends Popup {
   constructor(handleSubmit, popupSelector) {
@@ -9,18 +9,18 @@ export default class PopupWithForm extends Popup {
 
   _getInputValues() {
     // Get all field elements
-    this._inputList = this._form.querySelectorAll('.form__input')
+    const inputList = this._form.querySelectorAll('.form__input')
 
     // Create an empty object
-    this._formValues = {}
+    const formValues = {}
 
     // Add the values of the fields to this object
-    this._inputList.forEach((input) => {
-      this._formValues[input.name] = input.value
+    inputList.forEach((input) => {
+      formValues[input.name] = input.value
     })
 
     // Return the values object
-    return this._formValues
+    return formValues
   }
 
   setEventListeners() {
