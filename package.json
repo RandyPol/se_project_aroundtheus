@@ -1,0 +1,20 @@
+{
+  "name": "se_project_aroundtheus",
+  "version": "1.0.0",
+  "description": "## Take a look at the final results at:  https://randypol.github.io/se_project_aroundtheus/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RandyPol/se_project_aroundtheus.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RandyPol/se_project_aroundtheus/issues"
+  },
+  "homepage": "https://github.com/RandyPol/se_project_aroundtheus#readme"
+}
