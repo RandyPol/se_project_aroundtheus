@@ -46,9 +46,7 @@ export const roleInput = document.querySelector('#aboutMe')
 // Cards container
 export const cardsContainer = document.querySelector('.cards')
 
-
-
 // Picture expanded modal | Modal Card Image | Paragraph text
-export const pictureModal = document.querySelector('#modalPicture')
-export const modalImage = document.querySelector('.modal__picture-full')
-export const modalParagraph = document.querySelector('.modal__piture-paragraph')
+export const pictureModal = '#modalPicture'
+export const modalImage = '.modal__picture-full'
+export const modalParagraph = '.modal__piture-paragraph'

@@ -1,14 +1,16 @@
 import FormValidator from './FormValidator.js'
 import Card from './Card.js'
 import PopupWithForm from './PopupWithForm.js'
+import PopupWithImage from './PopupWithImage.js'
 import UserInfo from './UserInfo.js'
 import Section from './Section.js'
 import {
   initialCards,
   validationSettings,
   cardTemplate,
-  nameInput,
-  roleInput,
+  pictureModal,
+  modalImage,
+  modalParagraph,
 } from './constants.js'
 
 import { fillProfileForm } from './utils.js'
@@ -45,6 +47,22 @@ const addFormValidator = new FormValidator(validationSettings, modalAddForm)
 addFormValidator.enableValidation()
 
 /**------------------------------------------------------------------- 
+ * Initiating PopupWithImage Class For Picture Modal
+ ------------------------------------------------------------------- */
+const imagePopupModal = new PopupWithImage(
+  pictureModal,
+  modalImage,
+  modalParagraph
+)
+
+imagePopupModal.setEventListeners()
+
+// Image modal function to pass to the card class as an argument
+const handleImageClick = (evt) => {
+  imagePopupModal.open(evt.target.src, evt.target.alt)
+}
+
+/**------------------------------------------------------------------- 
  * Initiating PopupWithForm Class For Edit Profile Modal
  ------------------------------------------------------------------- */
 const userInfo = new UserInfo({
@@ -67,24 +85,16 @@ profileEditFormPopup.setEventListeners()
  ------------------------------------------------------------------- */
 // Handling submit function for modal card add
 const handleCardFormSubmit = (data) => {
-  // addCardElement(createCard({ name: name.value, link: link.value }, '#card'))
-  console.log(data)
+  const card = new Card(
+    { name: data.title, link: data.imageLink },
+    cardTemplate,
+    handleImageClick
+  )
+  prependCard.addItem(card.generateCard())
 }
 
 const cardAddFormPopup = new PopupWithForm(handleCardFormSubmit, '#modalAdd')
 cardAddFormPopup.setEventListeners()
-
-// Image modal function to pass to the card class as an argument
-function handleImageClick() {
-  // code for handling image click event
-  // Insert background image
-  modalImage.src = this.src
-  modalImage.alt = this.alt
-  // Modal paragraph text
-  modalParagraph.textContent = this.alt
-  // Modal open
-  openPopup(pictureModal)
-}
 
 /**------------------------------------------------------------------- 
  * Event Handlers
