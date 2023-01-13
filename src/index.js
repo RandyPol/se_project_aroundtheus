@@ -1,9 +1,9 @@
-import FormValidator from './FormValidator.js'
-import Card from './Card.js'
-import PopupWithForm from './PopupWithForm.js'
-import PopupWithImage from './PopupWithImage.js'
-import UserInfo from './UserInfo.js'
-import Section from './Section.js'
+import FormValidator from '../scripts/FormValidator.js'
+import Card from '../scripts/Card.js'
+import PopupWithForm from '../scripts/PopupWithForm.js'
+import PopupWithImage from '../scripts/PopupWithImage.js'
+import UserInfo from '../scripts/UserInfo.js'
+import Section from '../scripts/Section.js'
 import {
   initialCards,
   validationSettings,
@@ -15,9 +15,9 @@ import {
   modalAddForm,
   profileOpenButton,
   modalAddOpenButton,
-} from './constants.js'
+} from '../scripts/constants.js'
 
-import { fillProfileForm } from './utils.js'
+import { fillProfileForm } from '../scripts/utils.js'
 
 // Adding the initials cards
 const prependCard = new Section(
