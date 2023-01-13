@@ -36,16 +36,16 @@ class Card {
   _handleTrashButtonClick = () => {
     // code for handling trash button click event
     this._cardElement.remove()
-  }
-
-  // The value of this in a regular class method refers to the object that the event handler is being called on
-  // In this case it will be the hear button
-  _handleHeartButtonClick() {
-    // code for handling heart button click event
-    this.classList.toggle('card__heart-button_isActive')
     // The best thing to do after deleting a card is to remove the link to the DOM element
     // It helps javascript garbage collector.
     this._cardElement = null
+  }
+
+  // The value of this in a regular class method refers to the object that the event handler is being called on
+  // In this case it will be the heart button
+  _handleHeartButtonClick() {
+    // code for handling heart button click event
+    this.classList.toggle('card__heart-button_isActive')
   }
 
   generateCard() {
