@@ -50,3 +50,13 @@ export const cardsContainer = document.querySelector('.cards')
 export const pictureModal = '#modalPicture'
 export const modalImage = '.modal__picture-full'
 export const modalParagraph = '.modal__piture-paragraph'
+
+// The profile edit modal | Button
+export const modalEdit = document.querySelector('#modalEdit')
+export const modalEditForm = modalEdit.querySelector('.form')
+export const profileOpenButton = document.querySelector('.profile__name-edit')
+
+// The card add modal | Button
+export const modalAdd = document.querySelector('#modalAdd')
+export const modalAddForm = modalAdd.querySelector('.form')
+export const modalAddOpenButton = document.querySelector('.profile__add-button')

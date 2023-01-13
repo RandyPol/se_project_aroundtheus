@@ -11,6 +11,10 @@ import {
   pictureModal,
   modalImage,
   modalParagraph,
+  modalEditForm,
+  modalAddForm,
+  profileOpenButton,
+  modalAddOpenButton,
 } from './constants.js'
 
 import { fillProfileForm } from './utils.js'
@@ -26,16 +30,6 @@ const prependCard = new Section(
   },
   '.cards'
 )
-
-// The profile edit modal | Button
-const modalEdit = document.querySelector('#modalEdit')
-const modalEditForm = modalEdit.querySelector('.form')
-const profileOpenButton = document.querySelector('.profile__name-edit')
-
-// The card add modal | Button
-const modalAdd = document.querySelector('#modalAdd')
-const modalAddForm = modalAdd.querySelector('.form')
-const modalAddOpenButton = document.querySelector('.profile__add-button')
 
 /**------------------------------------------------------------------- 
  * Form Validator Classes
