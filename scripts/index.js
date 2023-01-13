@@ -1,6 +1,8 @@
 import FormValidator from './FormValidator.js'
 import Card from './Card.js'
-import { closePopup, openPopup } from './utils.js'
+import Popup from './Popup.js'
+import PopupWithForm from './PopupWithForm.js'
+import UserInfo from './UserInfo.js'
 import { initialCards, validationSettings, cardTemplate } from './constants.js'
 
 // The profile edit modal | Button
@@ -17,6 +19,34 @@ const editFormValidator = new FormValidator(validationSettings, modalEditForm)
 editFormValidator.enableValidation()
 const addFormValidator = new FormValidator(validationSettings, modalAddForm)
 addFormValidator.enableValidation()
+
+
+/**
+ * PopupWithForm: Profile Edit
+ */
+const userInfo = new UserInfo({
+  nameSelector: '.profile__name',
+  jobSelector: '.profile__role',
+})
+
+const handleProfileFormSubmit = (data) => {
+  userInfo.setUserInfo(data)
+}
+
+const profileEditFormPopup = new PopupWithForm(
+  handleProfileFormSubmit,
+  '#modalEdit'
+)
+profileEditFormPopup.setEventListeners()
+
+/**
+ * PopupWithForm: Adding Card
+ */
+
+const cardAddPopup = new PopupWithForm(handleProfileFormSubmit, '#modalEdit')
+
+cardAddPopup.setEventListeners()
+
 //
 // //
 //
@@ -41,64 +71,56 @@ function handleImageClick() {
 // Cards container
 export const cardsContainer = document.querySelector('.cards')
 
+/**
+ * Profile Edit Button | Profile Edit Modal
+ */
+
 // find the form inout_fields in the DOM
 const nameInput = document.querySelector('#name')
 const roleInput = document.querySelector('#aboutMe')
-export const profileName = document.querySelector('.profile__name')
-export const profileRole = document.querySelector('.profile__role')
 
 // Function to prefill the frm data
-const fillProfileForm = () => {
-  nameInput.value = profileName.textContent
-  roleInput.value = profileRole.textContent
+const fillProfileForm = ({ name, aboutMe }) => {
+  nameInput.value = name
+  roleInput.value = aboutMe
 }
 
 const handleEditProfileModal = () => {
   editFormValidator.resetValidation()
-  fillProfileForm()
-  openPopup(modalEdit)
+  fillProfileForm(userInfo.getUserInfo())
+  profileEditFormPopup.open()
 }
 
 // The profile edit modal | Button listener
 profileOpenButton.addEventListener('click', handleEditProfileModal)
+
+
+
+/**
+ * Card Add Button | Profile Edit Modal
+ */
+
+
 // The card add modal | Button listerner
 modalAddOpenButton.addEventListener('click', () => {
   addFormValidator.resetValidation()
   openPopup(modalAdd)
 })
 
-// Add click event listner for all close button
-const allModalCloseButton = document.querySelectorAll('.modal__button-close')
-allModalCloseButton.forEach((closeButton) =>
-  closeButton.addEventListener('click', (event) => {
-    closePopup(event.target.closest('.modal'))
-  })
-)
-
-// Handling submit function for modal profile edit
-export const handleProfileFormSubmit = (event) => {
-  event.preventDefault()
-
-  profileName.textContent = event.target.name.value
-  profileRole.textContent = event.target.aboutMe.value
-
-  closePopup(modalEdit)
-}
-
 // Handling submit function for modal card add
-export const handleCardFormSubmit = (event) => {
-  event.preventDefault()
+// export const handleCardFormSubmit = (event) => {
+//   event.preventDefault()
 
-  const name = event.target.title
-  const link = event.target.imageLink
-  addCardElement(createCard({ name: name.value, link: link.value }, '#card'))
-  closePopup(modalAdd)
-}
+//   const name = event.target.title
+//   const link = event.target.imageLink
+//   addCardElement(createCard({ name: name.value, link: link.value }, '#card'))
+//   closePopup(modalAdd)
+// }
 
 // Add event listener to edit submit form
-modalEditForm.addEventListener('submit', handleProfileFormSubmit)
-// Add event listener to add card form
-modalAddForm.addEventListener('submit', handleCardFormSubmit)
+// modalEditForm.addEventListener('submit', handleProfileFormSubmit)
+// // Add event listener to add card form
+// modalAddForm.addEventListener('submit', handleCardFormSubmit)
 
 // Create a createCard method
 export function createCard(data, cardTemplate, handleImage = handleImageClick) {
