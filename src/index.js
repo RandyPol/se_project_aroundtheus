@@ -1,3 +1,5 @@
+import './styles/index.css'
+
 import FormValidator from '../scripts/FormValidator.js'
 import Card from '../scripts/Card.js'
 import PopupWithForm from '../scripts/PopupWithForm.js'
