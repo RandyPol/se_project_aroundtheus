@@ -1,3 +1,5 @@
+import { nameInput, roleInput } from './constants.js'
+
 // Overlay close feature/function
 export function closeModalOnRemoteClick(evt) {
   // target is the element on which the event happened
