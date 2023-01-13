@@ -3,7 +3,27 @@ import Card from './Card.js'
 import PopupWithForm from './PopupWithForm.js'
 import UserInfo from './UserInfo.js'
 import Section from './Section.js'
-import { initialCards, validationSettings, cardTemplate } from './constants.js'
+import {
+  initialCards,
+  validationSettings,
+  cardTemplate,
+  nameInput,
+  roleInput,
+} from './constants.js'
+
+import { fillProfileForm } from './utils.js'
+
+// Adding the initials cards
+const prependCard = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const card = new Card(item, cardTemplate, handleImageClick)
+      prependCard.addItem(card.generateCard())
+    },
+  },
+  '.cards'
+)
 
 // The profile edit modal | Button
 const modalEdit = document.querySelector('#modalEdit')
@@ -15,14 +35,18 @@ const modalAdd = document.querySelector('#modalAdd')
 const modalAddForm = modalAdd.querySelector('.form')
 const modalAddOpenButton = document.querySelector('.profile__add-button')
 
+/**------------------------------------------------------------------- 
+ * Form Validator Classes
+ ------------------------------------------------------------------- */
+
 const editFormValidator = new FormValidator(validationSettings, modalEditForm)
 editFormValidator.enableValidation()
 const addFormValidator = new FormValidator(validationSettings, modalAddForm)
 addFormValidator.enableValidation()
 
-/**
- * PopupWithForm: Profile Edit
- */
+/**------------------------------------------------------------------- 
+ * Initiating PopupWithForm Class For Edit Profile Modal
+ ------------------------------------------------------------------- */
 const userInfo = new UserInfo({
   nameSelector: '.profile__name',
   jobSelector: '.profile__role',
@@ -38,9 +62,9 @@ const profileEditFormPopup = new PopupWithForm(
 )
 profileEditFormPopup.setEventListeners()
 
-/**
- * PopupWithForm: Adding Card
- */
+/**------------------------------------------------------------------- 
+ * Initiating PopupWithForm Class For Adding Card Modal
+ ------------------------------------------------------------------- */
 // Handling submit function for modal card add
 const handleCardFormSubmit = (data) => {
   // addCardElement(createCard({ name: name.value, link: link.value }, '#card'))
@@ -48,17 +72,7 @@ const handleCardFormSubmit = (data) => {
 }
 
 const cardAddFormPopup = new PopupWithForm(handleCardFormSubmit, '#modalAdd')
-
 cardAddFormPopup.setEventListeners()
-
-//
-// //
-//
-
-// Picture expanded modal | Modal Card Image | Paragraph text
-export const pictureModal = document.querySelector('#modalPicture')
-export const modalImage = document.querySelector('.modal__picture-full')
-export const modalParagraph = document.querySelector('.modal__piture-paragraph')
 
 // Image modal function to pass to the card class as an argument
 function handleImageClick() {
@@ -72,51 +86,31 @@ function handleImageClick() {
   openPopup(pictureModal)
 }
 
-// Cards container
-const cardsContainer = document.querySelector('.cards')
-
-/**
- * Profile Edit Button | Profile Edit Modal
- */
-
-// find the form inout_fields in the DOM
-const nameInput = document.querySelector('#name')
-const roleInput = document.querySelector('#aboutMe')
-
-// Function to prefill the frm data
-const fillProfileForm = ({ name, aboutMe }) => {
-  nameInput.value = name
-  roleInput.value = aboutMe
-}
-
+/**------------------------------------------------------------------- 
+ * Event Handlers
+ ------------------------------------------------------------------- */
 const handleEditProfileModal = () => {
   editFormValidator.resetValidation()
   fillProfileForm(userInfo.getUserInfo())
   profileEditFormPopup.open()
 }
 
+const handleAddCardModal = () => {
+  addFormValidator.resetValidation()
+  cardAddFormPopup.open()
+}
+
+/**------------------------------------------------------------------- 
+ * addEventListeners
+ ------------------------------------------------------------------- */
+
 // The profile edit modal | Button listener
 profileOpenButton.addEventListener('click', handleEditProfileModal)
 
-/**
- * Card Add Button | Profile Edit Modal
- */
-
 // The card add modal | Button listerner
-modalAddOpenButton.addEventListener('click', () => {
-  addFormValidator.resetValidation()
-  cardAddFormPopup.open()
-})
+modalAddOpenButton.addEventListener('click', handleAddCardModal)
 
-const prependCard = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const card = new Card(item, cardTemplate, handleImageClick)
-      prependCard.addItem(card.generateCard())
-    },
-  },
-  '.cards'
-)
+/** ------------------------------------------------------------------- */
 
+// Calling the prependCard render method to prepend the cards
 prependCard.renderItems()

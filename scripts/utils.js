@@ -33,3 +33,9 @@ export function openPopup(blockModal) {
   blockModal.addEventListener('mousedown', closeModalOnRemoteClick)
   blockModal.classList.add('modal_opened')
 }
+
+// Function to prefill the frm data
+export const fillProfileForm = ({ name, aboutMe }) => {
+  nameInput.value = name
+  roleInput.value = aboutMe
+}
