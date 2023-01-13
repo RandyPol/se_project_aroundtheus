@@ -1,8 +1,8 @@
 import FormValidator from './FormValidator.js'
 import Card from './Card.js'
-import Popup from './Popup.js'
 import PopupWithForm from './PopupWithForm.js'
 import UserInfo from './UserInfo.js'
+import Section from './Section.js'
 import { initialCards, validationSettings, cardTemplate } from './constants.js'
 
 // The profile edit modal | Button
@@ -19,7 +19,6 @@ const editFormValidator = new FormValidator(validationSettings, modalEditForm)
 editFormValidator.enableValidation()
 const addFormValidator = new FormValidator(validationSettings, modalAddForm)
 addFormValidator.enableValidation()
-
 
 /**
  * PopupWithForm: Profile Edit
@@ -42,10 +41,15 @@ profileEditFormPopup.setEventListeners()
 /**
  * PopupWithForm: Adding Card
  */
+// Handling submit function for modal card add
+const handleCardFormSubmit = (data) => {
+  // addCardElement(createCard({ name: name.value, link: link.value }, '#card'))
+  console.log(data)
+}
 
-const cardAddPopup = new PopupWithForm(handleProfileFormSubmit, '#modalEdit')
+const cardAddFormPopup = new PopupWithForm(handleCardFormSubmit, '#modalAdd')
 
-cardAddPopup.setEventListeners()
+cardAddFormPopup.setEventListeners()
 
 //
 // //
@@ -69,7 +73,7 @@ function handleImageClick() {
 }
 
 // Cards container
-export const cardsContainer = document.querySelector('.cards')
+const cardsContainer = document.querySelector('.cards')
 
 /**
  * Profile Edit Button | Profile Edit Modal
@@ -94,45 +98,25 @@ const handleEditProfileModal = () => {
 // The profile edit modal | Button listener
 profileOpenButton.addEventListener('click', handleEditProfileModal)
 
-
-
 /**
  * Card Add Button | Profile Edit Modal
  */
 
-
 // The card add modal | Button listerner
 modalAddOpenButton.addEventListener('click', () => {
   addFormValidator.resetValidation()
-  openPopup(modalAdd)
+  cardAddFormPopup.open()
 })
 
-// Handling submit function for modal card add
-// export const handleCardFormSubmit = (event) => {
-//   event.preventDefault()
+const prependCard = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const card = new Card(item, cardTemplate, handleImageClick)
+      prependCard.addItem(card.generateCard())
+    },
+  },
+  '.cards'
+)
 
-//   const name = event.target.title
-//   const link = event.target.imageLink
-//   addCardElement(createCard({ name: name.value, link: link.value }, '#card'))
-//   closePopup(modalAdd)
-// }
-
-// Add event listener to edit submit form
-// modalEditForm.addEventListener('submit', handleProfileFormSubmit)
-// // Add event listener to add card form
-// modalAddForm.addEventListener('submit', handleCardFormSubmit)
-
-// Create a createCard method
-export function createCard(data, cardTemplate, handleImage = handleImageClick) {
-  const card = new Card(data, cardTemplate, handleImage)
-  return card.generateCard()
-}
-
-// Prepare create card into the cards containers
-function addCardElement(createdCard) {
-  cardsContainer.prepend(createdCard)
-}
-
-initialCards.forEach((cardData) => {
-  addCardElement(createCard(cardData, cardTemplate, handleImageClick))
-})
+prependCard.renderItems()
