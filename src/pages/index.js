@@ -28,7 +28,7 @@ function createCard(item) {
 const cardSection = new Section(
   {
     items: initialCards,
-    renderer: (item) => createCard(item),
+    renderer: createCard,
   },
   '.cards'
 )
