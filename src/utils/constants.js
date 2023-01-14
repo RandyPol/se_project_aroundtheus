@@ -39,10 +39,6 @@ export const validationSettings = {
 // Card Template Selector
 export const cardTemplate = '#card'
 
-// find the form inout_fields in the DOM
-export const nameInput = document.querySelector('#name')
-export const roleInput = document.querySelector('#aboutMe')
-
 // Cards container
 export const cardsContainer = document.querySelector('.cards')
 

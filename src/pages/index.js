@@ -19,8 +19,6 @@ import {
   modalAddOpenButton,
 } from '../utils/constants.js'
 
-import { fillProfileForm } from '../utils/utils.js'
-
 // Adding the initials cards
 const prependCard = new Section(
   {
@@ -97,7 +95,7 @@ cardAddFormPopup.setEventListeners()
  ------------------------------------------------------------------- */
 const handleEditProfileModal = () => {
   editFormValidator.resetValidation()
-  fillProfileForm(userInfo.getUserInfo())
+  profileEditFormPopup.setInputValues(userInfo.getUserInfo())
   profileEditFormPopup.open()
 }
 

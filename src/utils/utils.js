@@ -1,5 +1,3 @@
-import { nameInput, roleInput } from './constants.js'
-
 // Overlay close feature/function
 export function closeModalOnRemoteClick(evt) {
   // target is the element on which the event happened
@@ -36,8 +34,3 @@ export function openPopup(blockModal) {
   blockModal.classList.add('modal_opened')
 }
 
-// Function to prefill the frm data
-export const fillProfileForm = ({ name, aboutMe }) => {
-  nameInput.value = name
-  roleInput.value = aboutMe
-}
