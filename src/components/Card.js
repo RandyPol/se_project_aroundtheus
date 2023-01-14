@@ -43,9 +43,9 @@ class Card {
 
   // The value of this in a regular class method refers to the object that the event handler is being called on
   // In this case it will be the heart button
-  _handleHeartButtonClick() {
+  _handleHeartButtonClick(evt) {
     // code for handling heart button click event
-    this.classList.toggle('card__heart-button_isActive')
+    evt.target.classList.toggle('card__heart-button_isActive')
   }
 
   generateCard() {
