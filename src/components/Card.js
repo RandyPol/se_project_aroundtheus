@@ -7,7 +7,7 @@ class Card {
   }
 
   _getTemplate() {
-    // code to get the card template
+    // code to get the card templategit status
     const cardElement = document
       .querySelector(this._templateSelector)
       .content.querySelector('.card')
