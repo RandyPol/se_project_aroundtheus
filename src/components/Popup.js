@@ -23,9 +23,9 @@ class Popup {
   setEventListeners() {
     this._popupElement
       .querySelector('.modal__button-close')
-      .addEventListener('click', this.close.bind(this))
+      .addEventListener('mousedown', this.close.bind(this))
 
-    this._popupElement.addEventListener('click', (evt) => {
+    this._popupElement.addEventListener('mousedown', (evt) => {
       if (evt.target === evt.currentTarget) {
         this.close()
       }
