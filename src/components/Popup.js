@@ -5,12 +5,13 @@ class Popup {
 
   open() {
     this._popupElement.classList.add('modal_opened')
-    document.addEventListener('keydown', this._handleEscClose.bind(this))
+    this._escCloseHandler = this._handleEscClose.bind(this)
+    document.addEventListener('keydown', this._escCloseHandler)
   }
 
   close() {
     this._popupElement.classList.remove('modal_opened')
-    document.removeEventListener('keydown', this._handleEscClose.bind(this))
+    document.removeEventListener('keydown', this._escCloseHandler)
   }
 
   _handleEscClose(evt) {
