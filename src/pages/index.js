@@ -20,13 +20,17 @@ import {
 } from '../utils/constants.js'
 
 // Adding the initials cards
+
+function createCard(item) {
+  // here you create a card
+  const card = new Card(item, cardTemplate, handleImageClick)
+  return card.generateCard()
+}
+
 const cardSection = new Section(
   {
     items: initialCards,
-    renderer: (item) => {
-      const card = new Card(item, cardTemplate, handleImageClick)
-      return card.generateCard()
-    },
+    renderer: (item) => createCard(item),
   },
   '.cards'
 )
