@@ -34,6 +34,7 @@ export const validationSettings = {
   inactiveButtonClass: 'form__button_inactive',
   inputErrorClass: 'form__input_type_error',
   errorClass: 'form__input-error_active',
+  formSelector: '.form',
 }
 
 // Card Template Selector
@@ -49,10 +50,8 @@ export const modalParagraph = '.modal__piture-paragraph'
 
 // The profile edit modal | Button
 export const modalEdit = document.querySelector('#modalEdit')
-export const modalEditForm = modalEdit.querySelector('.form')
 export const profileOpenButton = document.querySelector('.profile__name-edit')
 
 // The card add modal | Button
 export const modalAdd = document.querySelector('#modalAdd')
-export const modalAddForm = modalAdd.querySelector('.form')
 export const modalAddOpenButton = document.querySelector('.profile__add-button')

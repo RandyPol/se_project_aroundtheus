@@ -13,8 +13,6 @@ import {
   pictureModal,
   modalImage,
   modalParagraph,
-  modalEditForm,
-  modalAddForm,
   profileOpenButton,
   modalAddOpenButton,
 } from '../utils/constants.js'
@@ -38,11 +36,26 @@ const cardSection = new Section(
 /**------------------------------------------------------------------- 
  * Form Validator Classes
  ------------------------------------------------------------------- */
+const formValidators = {}
 
-const editFormValidator = new FormValidator(validationSettings, modalEditForm)
-editFormValidator.enableValidation()
-const addFormValidator = new FormValidator(validationSettings, modalAddForm)
-addFormValidator.enableValidation()
+// enable validation
+const enableValidation = (config) => {
+  //  Make a list of all forms
+  const formList = Array.from(document.querySelectorAll(config.formSelector))
+
+  //  For Each Form
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement)
+    // here you get the name of the form
+    const formName = formElement.getAttribute('name')
+
+    // here you store a validator by the `name` of the form
+    formValidators[formName] = validator
+    validator.enableValidation()
+  })
+}
+
+enableValidation(validationSettings)
 
 /**------------------------------------------------------------------- 
  * Initiating PopupWithImage Class For Picture Modal
@@ -94,13 +107,13 @@ cardAddFormPopup.setEventListeners()
  * Event Handlers
  ------------------------------------------------------------------- */
 const handleEditProfileModal = () => {
-  editFormValidator.resetValidation()
+  formValidators['profileForm'].resetValidation()
   profileEditFormPopup.setInputValues(userInfo.getUserInfo())
   profileEditFormPopup.open()
 }
 
 const handleAddCardModal = () => {
-  addFormValidator.resetValidation()
+  formValidators['cardForm'].resetValidation()
   cardAddFormPopup.open()
 }
 
