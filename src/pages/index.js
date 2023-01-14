@@ -20,12 +20,12 @@ import {
 } from '../utils/constants.js'
 
 // Adding the initials cards
-const prependCard = new Section(
+const cardSection = new Section(
   {
     items: initialCards,
     renderer: (item) => {
       const card = new Card(item, cardTemplate, handleImageClick)
-      prependCard.addItem(card.generateCard())
+      return card.generateCard()
     },
   },
   '.cards'
@@ -79,12 +79,8 @@ profileEditFormPopup.setEventListeners()
  ------------------------------------------------------------------- */
 // Handling submit function for modal card add
 const handleCardFormSubmit = (data) => {
-  const card = new Card(
-    { name: data.title, link: data.imageLink },
-    cardTemplate,
-    handleImageClick
-  )
-  prependCard.addItem(card.generateCard())
+  cardSection.addItem({ name: data.title, link: data.imageLink })
+  console.log(data)
 }
 
 const cardAddFormPopup = new PopupWithForm(handleCardFormSubmit, '#modalAdd')
@@ -116,5 +112,5 @@ modalAddOpenButton.addEventListener('click', handleAddCardModal)
 
 /** ------------------------------------------------------------------- */
 
-// Calling the prependCard render method to prepend the cards
-prependCard.renderItems()
+// Calling the cardSection render method to prepend the cards
+cardSection.renderItems()
