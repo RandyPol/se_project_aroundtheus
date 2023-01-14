@@ -1,11 +1,11 @@
 class Popup {
   constructor(popupSelector) {
     this._popupElement = document.querySelector(popupSelector)
+    this._escCloseHandler = this._handleEscClose.bind(this)
   }
 
   open() {
     this._popupElement.classList.add('modal_opened')
-    this._escCloseHandler = this._handleEscClose.bind(this)
     document.addEventListener('keydown', this._escCloseHandler)
   }
 
