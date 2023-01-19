@@ -25,4 +25,4 @@ You can find the Figma designs in the following link:
   
 Preview of the end product.
   
-![Around The U.S. Preview](/images/MAINPAGE.jpg)
+![Around The U.S. Preview](/src/images/MAINPAGE.jpg)
