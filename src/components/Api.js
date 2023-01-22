@@ -9,17 +9,14 @@ export default class Api {
    * @returns {Promise} Promise object represents the result of fetching the initial cards from the server
    */
   getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, { headers: this._headers })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-        }
-        return Promise.reject(`Error: ${res.status}`)
-      })
-      .catch((err) => {
-        console.log(err)
-        throw err
-      })
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json()
+      }
+      return Promise.reject(`Error: ${res.status}`)
+    })
   }
 
   getUserInfo() {
