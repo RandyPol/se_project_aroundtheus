@@ -20,16 +20,13 @@ export default class Api {
   }
 
   getUserInfo() {
-    return fetch(`${this._baseUrl}/users/me`, { headers: this._headers })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-        }
-        return Promise.reject(`Error: ${res.status}`)
-      })
-      .catch((err) => {
-        console.log(err)
-        throw err
-      })
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json()
+      }
+      return Promise.reject(`Error: ${res.status}`)
+    })
   }
 }
