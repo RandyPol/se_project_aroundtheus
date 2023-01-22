@@ -4,12 +4,17 @@ export default class Api {
     this.headers = options.headers
   }
 
+  /**
+   *
+   * @returns {Promise} Promise object represents the result of fetching the initial cards from the server
+   */
   getInitialCards() {
-    return fetch(`${this.baseUrl}/cards`, { headers: this.headers })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result)
-        return result
+    return fetch(`${this._baseUrl}/cards`, { headers: this._headers })
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+        return Promise.reject(`Error: ${res.status}`)
       })
       .catch((err) => {
         console.log(err)
@@ -17,5 +22,17 @@ export default class Api {
       })
   }
 
-  // other methods for working with the API
+  getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, { headers: this._headers })
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+        return Promise.reject(`Error: ${res.status}`)
+      })
+      .catch((err) => {
+        console.log(err)
+        throw err
+      })
+  }
 }
