@@ -36,13 +36,12 @@ function createCard(item) {
   return card.generateCard()
 }
 
-// const cardSection = new Section(
-//   {
-//     items: initialCards,
-//     renderer: createCard,
-//   },
-//   '.cards'
-// )
+const cardSection = new Section(
+  {
+    renderer: createCard,
+  },
+  '.cards'
+)
 
 /**------------------------------------------------------------------- 
  * Form Validator Classes
@@ -148,7 +147,7 @@ api
     const [userData, cardData] = data
     console.log(userData)
     console.log(cardData)
-    // cardSection.renderItems(data[1])
+    cardSection.renderInitialCards(cardData)
     userInfo.setUserInfo(userData)
   })
   .catch((err) => {

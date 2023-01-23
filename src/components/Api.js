@@ -1,7 +1,7 @@
 export default class Api {
   constructor(options) {
-    this.baseUrl = options.baseUrl
-    this.headers = options.headers
+    this._baseUrl = options.baseUrl
+    this._headers = options.headers
   }
 
   /**
@@ -19,6 +19,10 @@ export default class Api {
     })
   }
 
+  /**
+   *
+   * @returns {Promise} Promise object represents the result of fetching the user info from the server
+   */
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
@@ -28,5 +32,13 @@ export default class Api {
       }
       return Promise.reject(`Error: ${res.status}`)
     })
+  }
+
+  /**
+   *
+   * @returns {Promise} Promise object represents the result of fetching the user info and the initial cards from the server using Promise.all
+   */
+  loadData() {
+    return Promise.all([this.getUserInfo(), this.getInitialCards()])
   }
 }
