@@ -1,5 +1,6 @@
 import './index.css'
 
+import Api from '../components/Api.js'
 import FormValidator from '../components/FormValidator.js'
 import Card from '../components/Card.js'
 import PopupWithForm from '../components/PopupWithForm.js'
@@ -8,7 +9,6 @@ import UserInfo from '../components/UserInfo.js'
 import Section from '../components/Section.js'
 
 import {
-  initialCards,
   validationSettings,
   cardTemplate,
   pictureModal,
@@ -16,9 +16,19 @@ import {
   modalParagraph,
   profileOpenButton,
   modalAddOpenButton,
+  BASE_URL,
+  AUTH_TOKEN,
 } from '../utils/constants.js'
 
 // Adding the initials cards
+
+const api = new Api({
+  baseUrl: BASE_URL,
+  headers: {
+    authorization: AUTH_TOKEN,
+    'Content-Type': 'application/json',
+  },
+})
 
 function createCard(item) {
   // here you create a card
@@ -26,13 +36,13 @@ function createCard(item) {
   return card.generateCard()
 }
 
-const cardSection = new Section(
-  {
-    items: initialCards,
-    renderer: createCard,
-  },
-  '.cards'
-)
+// const cardSection = new Section(
+//   {
+//     items: initialCards,
+//     renderer: createCard,
+//   },
+//   '.cards'
+// )
 
 /**------------------------------------------------------------------- 
  * Form Validator Classes
@@ -131,4 +141,16 @@ modalAddOpenButton.addEventListener('click', handleAddCardModal)
 /** ------------------------------------------------------------------- */
 
 // Calling the cardSection render method to prepend the cards
-cardSection.renderItems()
+// cardSection.renderItems()
+api
+  .loadData()
+  .then((data) => {
+    const [userData, cardData] = data
+    console.log(userData)
+    console.log(cardData)
+    // cardSection.renderItems(data[1])
+    userInfo.setUserInfo(userData)
+  })
+  .catch((err) => {
+    console.log(err)
+  })
