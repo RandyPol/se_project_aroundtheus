@@ -92,7 +92,14 @@ const userInfo = new UserInfo({
 })
 
 const handleProfileFormSubmit = (data) => {
-  userInfo.setUserInfo(data)
+  api
+    .patchUserInfo(data)
+    .then((res) => {
+      userInfo.setUserInfo(res)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
 }
 
 const profileEditFormPopup = new PopupWithForm(
@@ -107,6 +114,7 @@ profileEditFormPopup.setEventListeners()
 // Handling submit function for modal card add
 const handleCardFormSubmit = (data) => {
   cardSection.addItem({ name: data.title, link: data.imageLink })
+  console.log('It was added to the DOM')
   console.log(data)
 }
 
@@ -140,13 +148,10 @@ modalAddOpenButton.addEventListener('click', handleAddCardModal)
 /** ------------------------------------------------------------------- */
 
 // Calling the cardSection render method to prepend the cards
-// cardSection.renderItems()
 api
   .loadData()
   .then((data) => {
     const [userData, cardData] = data
-    console.log(userData)
-    console.log(cardData)
     cardSection.renderInitialCards(cardData)
     userInfo.setUserInfo(userData)
   })

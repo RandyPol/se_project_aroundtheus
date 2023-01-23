@@ -41,4 +41,23 @@ export default class Api {
   loadData() {
     return Promise.all([this.getUserInfo(), this.getInitialCards()])
   }
+
+
+/**
+ * 
+ * @param {} data user info to be updated
+ * @returns The update user info from the server
+ */
+  patchUserInfo(data) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify(data),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json()
+      }
+      return Promise.reject(`Error: ${res.status}`)
+    })
+  }
 }
