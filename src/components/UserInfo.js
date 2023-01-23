@@ -8,8 +8,8 @@ export default class UserInfo {
     return { name: this._name.textContent, aboutMe: this._aboutMe.textContent }
   }
 
-  setUserInfo({ name, aboutMe }) {
+  setUserInfo({ name, about }) {
     this._name.textContent = name
-    this._aboutMe.textContent = aboutMe
+    this._aboutMe.textContent = about
   }
 }
