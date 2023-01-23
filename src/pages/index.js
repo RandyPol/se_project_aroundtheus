@@ -113,9 +113,14 @@ profileEditFormPopup.setEventListeners()
  ------------------------------------------------------------------- */
 // Handling submit function for modal card add
 const handleCardFormSubmit = (data) => {
-  cardSection.addItem({ name: data.title, link: data.imageLink })
-  console.log('It was added to the DOM')
-  console.log(data)
+  api
+    .postNewCard(data)
+    .then((res) => {
+      cardSection.addItem(res)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
 }
 
 const cardAddFormPopup = new PopupWithForm(handleCardFormSubmit, '#modalAdd')
