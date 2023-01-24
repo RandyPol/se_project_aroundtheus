@@ -31,6 +31,14 @@
   text-overflow: ellipsis;
 }
 
+.card__column-heartcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 3px;
+  margin-left: auto;
+}
+
 .card__heart-button {
   min-width: 21px;
   min-height: 19px;
@@ -38,7 +46,6 @@
   margin: 0;
   background: transparent url(../images/card_heart.svg) center no-repeat;
   border: none;
-  margin-left: auto;
   cursor: pointer;
 }
 .card__heart-button:hover {
