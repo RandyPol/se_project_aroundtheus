@@ -2,6 +2,7 @@ class Card {
   constructor(cardData, templateSelector, handleImageClick) {
     this._cardName = cardData.name
     this._cardLink = cardData.link
+    this._cardLikes = cardData.likes.length
     this._templateSelector = templateSelector
     this._handleImageClick = handleImageClick
   }
@@ -41,11 +42,23 @@ class Card {
     this._cardElement = null
   }
 
-  // The value of this in a regular class method refers to the object that the event handler is being called on
-  // In this case it will be the heart button
-  _handleHeartButtonClick(evt) {
+  _handleHeartButtonClick = (evt) => {
     // code for handling heart button click event
-    evt.target.classList.toggle('card__heart-button_isActive')
+    const heartButton = evt.target
+    if (heartButton.classList.contains('card__heart-button_isActive')) {
+      heartButton.classList.remove('card__heart-button_isActive')
+      console.log(JSON.stringify(this._cardLikes, null, 2))
+      this._cardLikes -= 1
+      this._cardElementLikes.textContent = this._cardLikes
+    } else {
+      console.log(JSON.stringify(this._cardLikes, null, 2))
+      heartButton.classList.add('card__heart-button_isActive')
+      this._cardLikes += 1
+      this._cardElementLikes.textContent = this._cardLikes
+    }
+
+    // Original code
+    // evt.target.classList.toggle('card__heart-button_isActive')
   }
 
   generateCard() {
@@ -54,6 +67,9 @@ class Card {
     this._cardElementImage = this._cardElement.querySelector(
       '.card__column-image'
     )
+    this._cardElementLikes =
+      this._cardElement.querySelector('.card__heart-count')
+
     const cardElementTitle = this._cardElement.querySelector(
       '.card__column-image-title'
     )
@@ -64,6 +80,7 @@ class Card {
     // Add Content
     this._cardElementImage.alt = this._cardName
     this._cardElementImage.src = this._cardLink
+    this._cardElementLikes.textContent = this._cardLikes
     cardElementTitle.textContent = this._cardName
 
     return this._cardElement

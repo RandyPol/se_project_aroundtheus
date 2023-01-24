@@ -117,6 +117,7 @@ const handleCardFormSubmit = (data) => {
     .postNewCard(data)
     .then((res) => {
       cardSection.addItem(res)
+      console.log(JSON.stringify(res, null, 2))
     })
     .catch((err) => {
       console.log(err)
