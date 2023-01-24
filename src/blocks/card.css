@@ -68,6 +68,17 @@
   border: none;
   cursor: pointer;
 }
+
+.card__heart-count {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.2;
+
+  color: #000000;
+}
+
 .card__trash-button:hover {
   opacity: 0.6;
 }
