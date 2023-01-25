@@ -143,7 +143,7 @@ const handleCardFormSubmit = (data) => {
   api
     .postNewCard(data)
     .then((res) => {
-      cardSection.addItem(res, api.getUserInfo()._id)
+      cardSection.addItem(res, res.owner._id)
     })
     .catch((err) => {
       console.log(err)
