@@ -47,11 +47,9 @@ class Card {
     const heartButton = evt.target
     if (heartButton.classList.contains('card__heart-button_isActive')) {
       heartButton.classList.remove('card__heart-button_isActive')
-      console.log(JSON.stringify(this._cardLikes, null, 2))
       this._cardLikes -= 1
       this._cardElementLikes.textContent = this._cardLikes
     } else {
-      console.log(JSON.stringify(this._cardLikes, null, 2))
       heartButton.classList.add('card__heart-button_isActive')
       this._cardLikes += 1
       this._cardElementLikes.textContent = this._cardLikes
