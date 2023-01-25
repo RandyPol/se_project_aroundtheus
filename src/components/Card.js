@@ -77,7 +77,12 @@ class Card {
     const cardElementTitle = this._cardElement.querySelector(
       '.card__column-image-title'
     )
-
+    // check if card is liked by user
+    if (this._cardData.likes.some((like) => like._id === this._currentUserId)) {
+      this._cardElement
+        .querySelector('.card__heart-button')
+        .classList.add('card__heart-button_isActive')
+    }
     // Set listeners
     this._setEventListeners()
 
