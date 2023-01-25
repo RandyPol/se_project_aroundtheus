@@ -4,7 +4,8 @@ class Card {
     templateSelector,
     handleImageClick,
     deleteCardModal,
-    currentUserId
+    currentUserId,
+    handleHeartClick
   ) {
     this._cardData = cardData
     this._cardName = cardData.name
@@ -15,6 +16,7 @@ class Card {
     this._handleImageClick = handleImageClick
     this._deleteCardModal = deleteCardModal
     this._currentUserId = currentUserId
+    this._handleHeartClick = handleHeartClick
   }
 
   _getTemplate() {
@@ -60,20 +62,7 @@ class Card {
   }
 
   _handleHeartButtonClick = (evt) => {
-    // code for handling heart button click event
-    const heartButton = evt.target
-    if (heartButton.classList.contains('card__heart-button_isActive')) {
-      heartButton.classList.remove('card__heart-button_isActive')
-      this._cardLikes -= 1
-      this._cardElementLikes.textContent = this._cardLikes
-    } else {
-      heartButton.classList.add('card__heart-button_isActive')
-      this._cardLikes += 1
-      this._cardElementLikes.textContent = this._cardLikes
-    }
-
-    // Original code
-    // evt.target.classList.toggle('card__heart-button_isActive')
+    this._handleHeartClick(evt, this._cardId)
   }
 
   generateCard() {
