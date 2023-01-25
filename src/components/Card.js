@@ -1,10 +1,20 @@
 class Card {
-  constructor(cardData, templateSelector, handleImageClick) {
+  constructor(
+    cardData,
+    templateSelector,
+    handleImageClick,
+    handleCardDelete,
+    currentUserId
+  ) {
+    this._cardData = cardData
     this._cardName = cardData.name
     this._cardLink = cardData.link
     this._cardLikes = cardData.likes.length
+    this._cardId = cardData._id
     this._templateSelector = templateSelector
     this._handleImageClick = handleImageClick
+    this._handleCardDelete = handleCardDelete
+    this._currentUserId = currentUserId
   }
 
   _getTemplate() {
@@ -13,6 +23,12 @@ class Card {
       .querySelector(this._templateSelector)
       .content.querySelector('.card')
       .cloneNode(true)
+
+    // Hide trash button if the card is not owned by the current user
+    const trashButton = cardElement.querySelector('.card__trash-button')
+    if (this._cardData.owner._id !== this._currentUserId) {
+      trashButton.remove()
+    }
 
     return cardElement
   }
@@ -26,9 +42,10 @@ class Card {
       .addEventListener('click', this._handleHeartButtonClick)
 
     // Erase card feature
-    this._cardElement
-      .querySelector('.card__trash-button')
-      .addEventListener('click', this._handleTrashButtonClick)
+    const trashButton = this._cardElement.querySelector('.card__trash-button')
+    if (trashButton) {
+      trashButton.addEventListener('click', this._handleTrashButtonClick)
+    }
 
     // Picture full modal
     this._cardElementImage.addEventListener('click', this._handleImageClick)
@@ -36,10 +53,11 @@ class Card {
 
   _handleTrashButtonClick = () => {
     // code for handling trash button click event
-    this._cardElement.remove()
+    // this._cardElement.remove()
     // The best thing to do after deleting a card is to remove the link to the DOM element
     // It helps javascript garbage collector.
-    this._cardElement = null
+    // this._cardElement = null
+    console.log('I was clicked')
   }
 
   _handleHeartButtonClick = (evt) => {

@@ -158,6 +158,8 @@ api
   .loadData()
   .then((data) => {
     const [userData, cardData] = data
+    console.log(JSON.stringify(userData._id, null, 2))
+    console.log(JSON.stringify(userData, null, 2))
     cardSection.renderInitialCards(cardData)
     userInfo.setUserInfo(userData)
   })
