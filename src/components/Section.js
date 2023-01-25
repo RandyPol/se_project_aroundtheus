@@ -4,8 +4,8 @@ export default class Section {
     this._container = document.querySelector(containerSelector)
   }
 
-  addItem(item) {
-    const card = this._renderer(item)
+  addItem(item, currentUserId) {
+    const card = this._renderer(item, currentUserId)
     this._container.prepend(card)
   }
 
@@ -15,9 +15,9 @@ export default class Section {
     })
   }
 
-  renderInitialCards(cards) {
+  renderInitialCards(cards, currentUserId) {
     cards.forEach((card) => {
-      this.addItem(card)
+      this.addItem(card, currentUserId)
     })
   }
 }

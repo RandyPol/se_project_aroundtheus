@@ -3,7 +3,7 @@ class Card {
     cardData,
     templateSelector,
     handleImageClick,
-    handleCardDelete,
+    deleteCardModal,
     currentUserId
   ) {
     this._cardData = cardData
@@ -13,7 +13,7 @@ class Card {
     this._cardId = cardData._id
     this._templateSelector = templateSelector
     this._handleImageClick = handleImageClick
-    this._handleCardDelete = handleCardDelete
+    this._deleteCardModal = deleteCardModal
     this._currentUserId = currentUserId
   }
 
@@ -26,8 +26,11 @@ class Card {
 
     // Hide trash button if the card is not owned by the current user
     const trashButton = cardElement.querySelector('.card__trash-button')
+
     if (this._cardData.owner._id !== this._currentUserId) {
       trashButton.remove()
+    } else {
+      cardElement.setAttribute('card-id', this._cardId)
     }
 
     return cardElement
@@ -53,11 +56,7 @@ class Card {
 
   _handleTrashButtonClick = () => {
     // code for handling trash button click event
-    // this._cardElement.remove()
-    // The best thing to do after deleting a card is to remove the link to the DOM element
-    // It helps javascript garbage collector.
-    // this._cardElement = null
-    console.log('I was clicked')
+    this._deleteCardModal.open(this._cardId)
   }
 
   _handleHeartButtonClick = (evt) => {

@@ -6,10 +6,12 @@ export default class PopupDeleteCard extends Popup {
     this._handleCardDelete = handleCardDelete
   }
 
-  setEventListeners() {
-    super.setEventListeners()
+  open(cardId) {
+    super.open()
     this._popupElement
       .querySelector('.modal__button-yes')
-      .addEventListener('click', this._handleCardDelete)
+      .addEventListener('click', () => {
+        this._handleCardDelete(cardId)
+      })
   }
 }

@@ -5,10 +5,12 @@ import FormValidator from '../components/FormValidator.js'
 import Card from '../components/Card.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 import PopupWithImage from '../components/PopupWithImage.js'
+import PopupDeleteCard from '../components/PopupDeleteCard.js'
 import UserInfo from '../components/UserInfo.js'
 import Section from '../components/Section.js'
 
 import {
+  deleteCardModal,
   validationSettings,
   cardTemplate,
   pictureModal,
@@ -30,9 +32,15 @@ const api = new Api({
   },
 })
 
-function createCard(item) {
+function createCard(item, currentUserId) {
   // here you create a card
-  const card = new Card(item, cardTemplate, handleImageClick)
+  const card = new Card(
+    item,
+    cardTemplate,
+    handleImageClick,
+    popupDeleteCard,
+    currentUserId
+  )
   return card.generateCard()
 }
 
@@ -84,6 +92,25 @@ const handleImageClick = (evt) => {
 }
 
 /**------------------------------------------------------------------- 
+/**------------------------------------------------------------------- 
+ * Initiating PopupDleteCard Class For Delete Card Modal
+ ------------------------------------------------------------------- */
+
+const popupDeleteCard = new PopupDeleteCard('#modalDelete', (cardId) => {
+  api
+    .deleteCard(cardId)
+    .then(() => {
+      // code to remove the card element from the DOM
+      const cardToRemove = document.querySelector(`[card-id="${cardId}"]`)
+      cardToRemove.remove()
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  popupDeleteCard.close()
+})
+popupDeleteCard.setEventListeners()
+/**------------------------------------------------------------------- 
  * Initiating PopupWithForm Class For Edit Profile Modal
  ------------------------------------------------------------------- */
 const userInfo = new UserInfo({
@@ -116,8 +143,7 @@ const handleCardFormSubmit = (data) => {
   api
     .postNewCard(data)
     .then((res) => {
-      cardSection.addItem(res)
-      console.log(JSON.stringify(res, null, 2))
+      cardSection.addItem(res, api.getUserInfo()._id)
     })
     .catch((err) => {
       console.log(err)
@@ -158,9 +184,9 @@ api
   .loadData()
   .then((data) => {
     const [userData, cardData] = data
-    console.log(JSON.stringify(userData._id, null, 2))
-    console.log(JSON.stringify(userData, null, 2))
-    cardSection.renderInitialCards(cardData)
+    // console.log(JSON.stringify(userData._id, null, 2))
+    // console.log(JSON.stringify(userData, null, 2))
+    cardSection.renderInitialCards(cardData, userData._id)
     userInfo.setUserInfo(userData)
   })
   .catch((err) => {
