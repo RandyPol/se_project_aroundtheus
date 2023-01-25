@@ -153,6 +153,54 @@
           </fieldset>
         </form>
       </div>
+      <!--Edit Avatar Modal -->
+      <div class="modal" id="modalEditAvatar">
+        <!-- Form -->
+        <form
+          action="#"
+          class="form modal__container"
+          name="avatarForm"
+          novalidate
+        >
+          <h1 class="form__title">Change profile picture</h1>
+          <fieldset class="form__fieldset">
+            <label class="form__field">
+              <input
+                type="url"
+                class="form__input"
+                id="link"
+                name="link"
+                placeholder="Image link"
+                required
+              />
+              <span class="form__input-error link-input-error"
+                >Hello This is an Error</span
+              >
+            </label>
+          </fieldset>
+          <fieldset class="form__fieldset">
+            <button
+              aria-label="submit"
+              type="submit"
+              class="form__button form__submit"
+            >
+              Save
+            </button>
+
+            <button
+              aria-label="exit"
+              class="form__button modal__button-close"
+              type="button"
+            >
+              <img
+                src="<%=require('./images/CloseIcon.svg')%>"
+                alt="Close icon"
+                class="modal__close"
+              />
+            </button>
+          </fieldset>
+        </form>
+      </div>
       <!-- Add Card Modal -->
       <div class="modal" id="modalAdd">
         <!-- Form -->
