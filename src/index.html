@@ -234,6 +234,25 @@
           </button>
         </div>
       </div>
+
+      <!-- Delete Card Modal -->
+      <div class="modal" id="modalDelete">
+        <div class="modal__deletedcard modal__container">
+          <h1 class="modal__confirmation-title">Are you sure?</h1>
+          <button class="modal__button-yes">Yes</button>
+          <button
+            aria-label="exit"
+            class="button modal__button-close"
+            type="button"
+          >
+            <img
+              src="<%=require('./images/CloseIcon.svg')%>"
+              alt="Close icon"
+              class="modal__close"
+            />
+          </button>
+        </div>
+      </div>
     </div>
   </body>
 </html>
