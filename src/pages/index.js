@@ -10,7 +10,6 @@ import UserInfo from '../components/UserInfo.js'
 import Section from '../components/Section.js'
 
 import {
-  deleteCardModal,
   validationSettings,
   cardTemplate,
   pictureModal,
@@ -39,7 +38,8 @@ function createCard(item, currentUserId) {
     cardTemplate,
     handleImageClick,
     popupDeleteCard,
-    currentUserId
+    currentUserId,
+    handleHeartClick
   )
   return card.generateCard()
 }
@@ -74,6 +74,39 @@ const enableValidation = (config) => {
 }
 
 enableValidation(validationSettings)
+/**------------------------------------------------------------------- 
+ * Handle Heart Click
+ ------------------------------------------------------------------- */
+
+const handleHeartClick = (evt, cardId) => {
+  const heartButton = evt.target
+  const isLiked = heartButton.classList.contains('card__heart-button_isActive')
+
+  if (isLiked) {
+    api
+      .deleteCardLike(cardId)
+      .then((res) => {
+        heartButton.classList.remove('card__heart-button_isActive')
+        heartButton.nextElementSibling.textContent = res.likes.length
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  } else {
+    api
+      .putCardLike(cardId)
+      .then((res) => {
+        heartButton.classList.add('card__heart-button_isActive')
+        heartButton.nextElementSibling.textContent = res.likes.length
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+}
+
+/**------------------------------------------------------------------- 
+/
 
 /**------------------------------------------------------------------- 
  * Initiating PopupWithImage Class For Picture Modal
