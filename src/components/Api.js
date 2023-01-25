@@ -60,6 +60,11 @@ export default class Api {
     })
   }
 
+  /**
+   *
+   * @param {*} data card info to be posted
+   * @returns
+   */
   postNewCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
@@ -73,8 +78,42 @@ export default class Api {
     })
   }
 
+  /**
+   *
+   * @param {*} cardId card id to be deleted
+   * @returns
+   */
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json()
+      }
+      return Promise.reject(`Error: ${res.status}`)
+    })
+  }
+
+  /**
+   *
+   * @param {*} cardId card id to be liked
+   * @returns
+   */
+  putCardLike(cardId) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: 'PUT',
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json()
+      }
+      return Promise.reject(`Error: ${res.status}`)
+    })
+  }
+
+  deleteCardLike(cardId) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
     }).then((res) => {
