@@ -39,7 +39,7 @@ function createCard(item, currentUserId) {
     item,
     cardTemplate,
     handleImageClick,
-    popupDeleteCard,
+    handleTrashClick,
     currentUserId,
     handleHeartClick
   )
@@ -80,26 +80,21 @@ enableValidation(validationSettings)
  * Handle Heart Click
  ------------------------------------------------------------------- */
 
-const handleHeartClick = (evt, cardId) => {
-  const heartButton = evt.target
-  const isLiked = heartButton.classList.contains('card__heart-button_isActive')
-
-  if (isLiked) {
+const handleHeartClick = (card) => {
+  if (card.getCardLikeStatus()) {
     api
-      .deleteCardLike(cardId)
+      .deleteCardLike(card.getId())
       .then((res) => {
-        heartButton.classList.remove('card__heart-button_isActive')
-        heartButton.nextElementSibling.textContent = res.likes.length
+        card.toggleLikeButton(res.likes.length)
       })
       .catch((err) => {
         console.log(err)
       })
   } else {
     api
-      .putCardLike(cardId)
+      .putCardLike(card.getId())
       .then((res) => {
-        heartButton.classList.add('card__heart-button_isActive')
-        heartButton.nextElementSibling.textContent = res.likes.length
+        card.toggleLikeButton(res.likes.length)
       })
       .catch((err) => {
         console.log(err)
@@ -131,18 +126,21 @@ const handleImageClick = (evt) => {
  * Initiating PopupDleteCard Class For Delete Card Modal
  ------------------------------------------------------------------- */
 
-const popupDeleteCard = new PopupDeleteCard('#modalDelete', (cardId) => {
+const handleTrashClick = (card) => {
+  popupDeleteCard.open(card)
+}
+
+const popupDeleteCard = new PopupDeleteCard('#modalDelete', (card) => {
   api
-    .deleteCard(cardId)
+    .deleteCard(card.getId())
     .then(() => {
       // code to remove the card element from the DOM
-      const cardToRemove = document.querySelector(`[card-id="${cardId}"]`)
-      cardToRemove.remove()
+      card.deleteCard()
+      popupDeleteCard.close()
     })
     .catch((err) => {
       console.log(err)
     })
-  popupDeleteCard.close()
 })
 popupDeleteCard.setEventListeners()
 /**------------------------------------------------------------------- 
