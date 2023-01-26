@@ -58,11 +58,31 @@ class Card {
 
   _handleTrashButtonClick = () => {
     // code for handling trash button click event
-    this._deleteCardModal.open(this._cardId)
+    this._deleteCardModal(this)
   }
 
-  _handleHeartButtonClick = (evt) => {
-    this._handleHeartClick(evt, this._cardId)
+  deleteCard() {
+    this._cardElement.remove()
+    this._cardElement = null
+  }
+
+  _handleHeartButtonClick = () => {
+    this._handleHeartClick(this)
+  }
+
+  getCardLikeStatus() {
+    return this._cardLikeButton.classList.contains(
+      'card__heart-button_isActive'
+    )
+  }
+
+  toggleLikeButton(cardLikes) {
+    this._cardLikeButton.classList.toggle('card__heart-button_isActive')
+    this._cardElementLikes.textContent = cardLikes
+  }
+
+  getId() {
+    return this._cardId
   }
 
   generateCard() {
@@ -77,11 +97,13 @@ class Card {
     const cardElementTitle = this._cardElement.querySelector(
       '.card__column-image-title'
     )
+
+    this._cardLikeButton = this._cardElement.querySelector(
+      '.card__heart-button'
+    )
     // check if card is liked by user
     if (this._cardData.likes.some((like) => like._id === this._currentUserId)) {
-      this._cardElement
-        .querySelector('.card__heart-button')
-        .classList.add('card__heart-button_isActive')
+      this._cardLikeButton.classList.add('card__heart-button_isActive')
     }
     // Set listeners
     this._setEventListeners()
