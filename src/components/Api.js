@@ -4,6 +4,14 @@ export default class Api {
     this._headers = options.headers
   }
 
+  // here is the code of the checking the response status
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json()
+    }
+    return Promise.reject(`Error: ${res.status}`)
+  }
+
   /**
    *
    * @returns {Promise} Promise object represents the result of fetching the initial cards from the server
@@ -11,12 +19,7 @@ export default class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Error: ${res.status}`)
-    })
+    }).then(this._checkResponse)
   }
 
   /**
@@ -26,12 +29,7 @@ export default class Api {
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Error: ${res.status}`)
-    })
+    }).then(this._checkResponse)
   }
 
   /**
@@ -52,12 +50,7 @@ export default class Api {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify(data),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Error: ${res.status}`)
-    })
+    }).then(this._checkResponse)
   }
 
   /**
@@ -70,12 +63,7 @@ export default class Api {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify(data),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Error: ${res.status}`)
-    })
+    }).then(this._checkResponse)
   }
 
   /**
@@ -87,12 +75,7 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Error: ${res.status}`)
-    })
+    }).then(this._checkResponse)
   }
 
   /**
@@ -104,24 +87,14 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
       method: 'PUT',
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Error: ${res.status}`)
-    })
+    }).then(this._checkResponse)
   }
 
   deleteCardLike(cardId) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Error: ${res.status}`)
-    })
+    }).then(this._checkResponse)
   }
 
   /**
@@ -134,11 +107,6 @@ export default class Api {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify(data),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Error: ${res.status}`)
-    })
+    }).then(this._checkResponse)
   }
 }
