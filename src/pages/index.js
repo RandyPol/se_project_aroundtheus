@@ -19,6 +19,8 @@ import {
   modalAddOpenButton,
   BASE_URL,
   AUTH_TOKEN,
+  avatarButtonEdit,
+  avatarImageSrc,
 } from '../utils/constants.js'
 
 // Adding the initials cards
@@ -149,6 +151,7 @@ popupDeleteCard.setEventListeners()
 const userInfo = new UserInfo({
   nameSelector: '.profile__name',
   jobSelector: '.profile__role',
+  avatarSelector: '.profile__avatar',
 })
 
 const handleProfileFormSubmit = (data) => {
@@ -186,6 +189,28 @@ const handleCardFormSubmit = (data) => {
 const cardAddFormPopup = new PopupWithForm(handleCardFormSubmit, '#modalAdd')
 cardAddFormPopup.setEventListeners()
 
+/**-------------------------------------------------------------------
+ * Initiating PopupWithForm Class For Avatar Edit Modal ------------------------------------------------------------------- */
+// Handling submit function for modal card add
+
+const handleAvatarFormSubmit = ({ link: avatar }) => {
+  api
+    .patchUserAvatar({ avatar })
+    .then((res) => {
+      console.log(JSON.stringify(res.avatar))
+      avatarImageSrc.src = res.avatar
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
+const avatarModalPopup = new PopupWithForm(
+  handleAvatarFormSubmit,
+  '#modalEditAvatar'
+)
+avatarModalPopup.setEventListeners()
+
 /**------------------------------------------------------------------- 
  * Event Handlers
  ------------------------------------------------------------------- */
@@ -199,6 +224,10 @@ const handleAddCardModal = () => {
   formValidators['cardForm'].resetValidation()
   cardAddFormPopup.open()
 }
+const handleAvatarClick = () => {
+  formValidators['avatarForm'].resetValidation()
+  avatarModalPopup.open()
+}
 
 /**------------------------------------------------------------------- 
  * addEventListeners
@@ -210,6 +239,9 @@ profileOpenButton.addEventListener('click', handleEditProfileModal)
 // The card add modal | Button listerner
 modalAddOpenButton.addEventListener('click', handleAddCardModal)
 
+// The card add modal | Button listerner
+avatarButtonEdit.addEventListener('click', handleAvatarClick)
+
 /** ------------------------------------------------------------------- */
 
 // Calling the cardSection render method to prepend the cards
@@ -217,8 +249,6 @@ api
   .loadData()
   .then((data) => {
     const [userData, cardData] = data
-    // console.log(JSON.stringify(userData._id, null, 2))
-    // console.log(JSON.stringify(userData, null, 2))
     cardSection.renderInitialCards(cardData, userData._id)
     userInfo.setUserInfo(userData)
   })
