@@ -12,24 +12,30 @@ export default class Api {
     return Promise.reject(`Error: ${res.status}`)
   }
 
+  _request(url, options) {
+    return fetch(url, options).then(this._checkResponse)
+  }
+
   /**
    *
    * @returns {Promise} Promise object represents the result of fetching the initial cards from the server
    */
+
   getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {
+    return this._request(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    }).then(this._checkResponse)
+    })
   }
 
   /**
    *
    * @returns {Promise} Promise object represents the result of fetching the user info from the server
    */
+
   getUserInfo() {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return this._request(`${this._baseUrl}/users/me`, {
       headers: this._headers,
-    }).then(this._checkResponse)
+    })
   }
 
   /**
@@ -45,12 +51,13 @@ export default class Api {
    * @param {} data user info to be updated
    * @returns The update user info from the server
    */
+
   patchUserInfo(data) {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return this._request(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify(data),
-    }).then(this._checkResponse)
+    })
   }
 
   /**
@@ -58,12 +65,13 @@ export default class Api {
    * @param {*} data card info to be posted
    * @returns
    */
+
   postNewCard(data) {
-    return fetch(`${this._baseUrl}/cards`, {
+    return this._request(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify(data),
-    }).then(this._checkResponse)
+    })
   }
 
   /**
@@ -71,11 +79,12 @@ export default class Api {
    * @param {*} cardId card id to be deleted
    * @returns
    */
+
   deleteCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+    return this._request(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
-    }).then(this._checkResponse)
+    })
   }
 
   /**
@@ -83,18 +92,25 @@ export default class Api {
    * @param {*} cardId card id to be liked
    * @returns
    */
+
   putCardLike(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+    return this._request(`${this._baseUrl}/cards/likes/${cardId}`, {
       method: 'PUT',
       headers: this._headers,
-    }).then(this._checkResponse)
+    })
   }
 
+  /**
+   *
+   * @param {*} card id to be unliked
+   * @returns
+   */
+
   deleteCardLike(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+    return this._request(`${this._baseUrl}/cards/likes/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
-    }).then(this._checkResponse)
+    })
   }
 
   /**
@@ -102,11 +118,12 @@ export default class Api {
    * @param {*} data avatar info to be updated
    * @retuns The updated avatar info from the server
    */
+
   patchUserAvatar(data) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
+    return this._request(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify(data),
-    }).then(this._checkResponse)
+    })
   }
 }
