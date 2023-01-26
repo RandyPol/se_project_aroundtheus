@@ -130,7 +130,6 @@ export default class Api {
    * @retuns The updated avatar info from the server
    */
   patchUserAvatar(data) {
-    console.log(`In api call ${JSON.stringify(data, null, 2)}`)
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
