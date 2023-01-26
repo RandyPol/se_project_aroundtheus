@@ -160,6 +160,7 @@ const handleProfileFormSubmit = (data) => {
     .then((res) => {
       userInfo.setUserInfo(res)
       profileEditFormPopup.close()
+      profileEditFormPopup.renderLoading()
     })
     .catch((err) => {
       console.log(err)
@@ -181,6 +182,7 @@ const handleCardFormSubmit = (data) => {
     .postNewCard(data)
     .then((res) => {
       cardAddFormPopup.close()
+      cardAddFormPopup.renderLoading()
       cardSection.addItem(res, res.owner._id)
     })
     .catch((err) => {
@@ -200,6 +202,7 @@ const handleAvatarFormSubmit = ({ link: avatar }) => {
     .patchUserAvatar({ avatar })
     .then((res) => {
       avatarModalPopup.close()
+      avatarModalPopup.renderLoading()
       avatarImageSrc.src = res.avatar
     })
     .catch((err) => {
