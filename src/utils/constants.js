@@ -35,8 +35,9 @@ export const deleteCardModalButton =
   deleteCardModal.querySelector('.modal__button-yes')
 
 // The Avatar Modal | Button
-export const modalDelete = document.querySelector('#modalDelete')
+export const modalAvatarEdit = document.querySelector('#modalEditAvatar')
 export const avatarButtonEdit = document.querySelector('.profile__avatar-edit')
+export const avatarImageSrc = document.querySelector('.profile__avatar')
 
 // API Token
 export const BASE_URL = 'https://around.nomoreparties.co/v1/group-12'
