@@ -32,6 +32,53 @@ const api = new Api({
   },
 })
 
+/**------------------------------------------------------------------- 
+ * Card Section
+ ------------------------------------------------------------------- */
+
+/**
+ *
+ * @param {Card} Handling the heart click event
+ */
+const handleHeartClick = (card) => {
+  if (card.getCardLikeStatus()) {
+    api
+      .deleteCardLike(card.getId())
+      .then((res) => {
+        card.toggleLikeButton(res.likes.length)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  } else {
+    api
+      .putCardLike(card.getId())
+      .then((res) => {
+        card.toggleLikeButton(res.likes.length)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+}
+
+/**
+ *
+ * @param {Card} Handling the trash click event
+ */
+const handleTrashClick = (card) => {
+  popupDeleteCard.open(card)
+}
+
+/**
+ *
+ * @param {evt} Handling the image click event
+ */
+const handleImageClick = (evt) => {
+  imagePopupModal.open(evt.target.src, evt.target.alt)
+}
+
+// Create a card
 function createCard(item, currentUserId) {
   // here you create a card
   const card = new Card(
@@ -45,6 +92,9 @@ function createCard(item, currentUserId) {
   return card.generateCard()
 }
 
+/**
+ * Initiating Section Class
+ */
 const cardSection = new Section(
   {
     renderer: createCard,
@@ -73,36 +123,7 @@ const enableValidation = (config) => {
     validator.enableValidation()
   })
 }
-
 enableValidation(validationSettings)
-/**------------------------------------------------------------------- 
- * Handle Heart Click
- ------------------------------------------------------------------- */
-
-const handleHeartClick = (card) => {
-  if (card.getCardLikeStatus()) {
-    api
-      .deleteCardLike(card.getId())
-      .then((res) => {
-        card.toggleLikeButton(res.likes.length)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  } else {
-    api
-      .putCardLike(card.getId())
-      .then((res) => {
-        card.toggleLikeButton(res.likes.length)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }
-}
-
-/**------------------------------------------------------------------- 
-/
 
 /**------------------------------------------------------------------- 
  * Initiating PopupWithImage Class For Picture Modal
@@ -112,23 +133,11 @@ const imagePopupModal = new PopupWithImage(
   modalImage,
   modalParagraph
 )
-
 imagePopupModal.setEventListeners()
 
-// Image modal function to pass to the card class as an argument
-const handleImageClick = (evt) => {
-  imagePopupModal.open(evt.target.src, evt.target.alt)
-}
-
-/**------------------------------------------------------------------- 
 /**------------------------------------------------------------------- 
  * Initiating PopupDleteCard Class For Delete Card Modal
  ------------------------------------------------------------------- */
-
-const handleTrashClick = (card) => {
-  popupDeleteCard.open(card)
-}
-
 const popupDeleteCard = new PopupDeleteCard('#modalDelete', (card) => {
   api
     .deleteCard(card.getId())
@@ -142,6 +151,7 @@ const popupDeleteCard = new PopupDeleteCard('#modalDelete', (card) => {
     })
 })
 popupDeleteCard.setEventListeners()
+
 /**------------------------------------------------------------------- 
  * Initiating PopupWithForm Class For Edit Profile Modal
  ------------------------------------------------------------------- */
@@ -192,8 +202,7 @@ cardAddFormPopup.setEventListeners()
 
 /**-------------------------------------------------------------------
  * Initiating PopupWithForm Class For Avatar Edit Modal ------------------------------------------------------------------- */
-// Handling submit function for modal card add
-
+// Handling submit function for modal avartar edit
 const handleAvatarFormSubmit = ({ link: avatar }) => {
   api
     .patchUserAvatar({ avatar })
@@ -214,34 +223,30 @@ const avatarModalPopup = new PopupWithForm(
 avatarModalPopup.setEventListeners()
 
 /**------------------------------------------------------------------- 
- * Event Handlers
+ * Event Handlers | addEventListeners
  ------------------------------------------------------------------- */
+// The profile edit modal | Button listener
 const handleEditProfileModal = () => {
   formValidators['profileForm'].resetValidation()
   profileEditFormPopup.setInputValues(userInfo.getUserInfo())
   profileEditFormPopup.open()
 }
+profileOpenButton.addEventListener('click', handleEditProfileModal)
 
+/** ------------------------------------------------------------------- */
+// The card add modal | Button listerner
 const handleAddCardModal = () => {
   formValidators['cardForm'].resetValidation()
   cardAddFormPopup.open()
 }
+modalAddOpenButton.addEventListener('click', handleAddCardModal)
+
+/** ------------------------------------------------------------------- */
+// The avatar modal | Button listerner
 const handleAvatarClick = () => {
   formValidators['avatarForm'].resetValidation()
   avatarModalPopup.open()
 }
-
-/**------------------------------------------------------------------- 
- * addEventListeners
- ------------------------------------------------------------------- */
-
-// The profile edit modal | Button listener
-profileOpenButton.addEventListener('click', handleEditProfileModal)
-
-// The card add modal | Button listerner
-modalAddOpenButton.addEventListener('click', handleAddCardModal)
-
-// The card add modal | Button listerner
 avatarButtonEdit.addEventListener('click', handleAvatarClick)
 
 /** ------------------------------------------------------------------- */
