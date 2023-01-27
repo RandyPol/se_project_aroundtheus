@@ -40,9 +40,7 @@ class Card {
     // code to set event listeners for the card
 
     // Like feature toggle
-    this._cardElement
-      .querySelector('.card__heart-button')
-      .addEventListener('click', this._handleHeartButtonClick)
+    this._cardLikeButton.addEventListener('click', this._handleHeartButtonClick)
 
     // Erase card feature
     const trashButton = this._cardElement.querySelector('.card__trash-button')
