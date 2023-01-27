@@ -20,7 +20,6 @@ import {
   BASE_URL,
   AUTH_TOKEN,
   avatarButtonEdit,
-  avatarImageSrc,
 } from '../utils/constants.js'
 
 // Adding the initials cards
@@ -201,7 +200,7 @@ const handleAvatarFormSubmit = ({ link: avatar }) => {
     .then((res) => {
       avatarModalPopup.close()
       avatarModalPopup.renderLoading()
-      avatarImageSrc.src = res.avatar
+      userInfo.setUserAvatar(res.avatar)
     })
     .catch((err) => {
       console.log(err)
