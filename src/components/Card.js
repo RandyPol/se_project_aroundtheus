@@ -26,13 +26,6 @@ class Card {
       .content.querySelector('.card')
       .cloneNode(true)
 
-    // Hide trash button if the card is not owned by the current user
-    const trashButton = cardElement.querySelector('.card__trash-button')
-
-    if (this._cardData.owner._id !== this._currentUserId) {
-      trashButton.remove()
-    }
-
     return cardElement
   }
 
@@ -43,9 +36,8 @@ class Card {
     this._cardLikeButton.addEventListener('click', this._handleHeartButtonClick)
 
     // Erase card feature
-    const trashButton = this._cardElement.querySelector('.card__trash-button')
-    if (trashButton) {
-      trashButton.addEventListener('click', this._handleTrashButtonClick)
+    if (this._trashButton) {
+      this._trashButton.addEventListener('click', this._handleTrashButtonClick)
     }
 
     // Picture full modal
@@ -93,6 +85,13 @@ class Card {
     const cardElementTitle = this._cardElement.querySelector(
       '.card__column-image-title'
     )
+    // Hide trash button if the card is not owned by the current user
+    this._trashButton = this._cardElement.querySelector('.card__trash-button')
+
+    if (this._cardData.owner._id !== this._currentUserId) {
+      this._trashButton.remove()
+      this._trashButton = null
+    }
 
     this._cardLikeButton = this._cardElement.querySelector(
       '.card__heart-button'
