@@ -31,8 +31,6 @@ class Card {
 
     if (this._cardData.owner._id !== this._currentUserId) {
       trashButton.remove()
-    } else {
-      cardElement.setAttribute('card-id', this._cardId)
     }
 
     return cardElement
