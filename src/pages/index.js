@@ -167,11 +167,11 @@ const handleProfileFormSubmit = (data) => {
     .then((res) => {
       userInfo.setUserInfo(res)
       profileEditFormPopup.close()
+      profileEditFormPopup.renderLoading()
     })
     .catch((err) => {
       console.log(err)
     })
-    .finally(() => profileEditFormPopup.renderLoading(false))
 }
 
 const profileEditFormPopup = new PopupWithForm(
@@ -188,13 +188,13 @@ const handleCardFormSubmit = (data) => {
   api
     .postNewCard(data)
     .then((res) => {
-      cardSection.addItem(res, res.owner._id)
       cardAddFormPopup.close()
+      cardAddFormPopup.renderLoading()
+      cardSection.addItem(res, res.owner._id)
     })
     .catch((err) => {
       console.log(err)
     })
-    .finally(() => cardAddFormPopup.renderLoading(false))
 }
 
 const cardAddFormPopup = new PopupWithForm(handleCardFormSubmit, '#modalAdd')
@@ -207,13 +207,13 @@ const handleAvatarFormSubmit = ({ link: avatar }) => {
   api
     .patchUserAvatar({ avatar })
     .then((res) => {
-      userInfo.setUserInfo(res)
       avatarModalPopup.close()
+      avatarModalPopup.renderLoading()
+      userInfo.setUserAvatar(res.avatar)
     })
     .catch((err) => {
       console.log(err)
     })
-    .finally(() => avatarModalPopup.renderLoading(false))
 }
 
 const avatarModalPopup = new PopupWithForm(
