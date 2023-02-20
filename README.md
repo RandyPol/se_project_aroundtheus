@@ -1,6 +1,6 @@
 # Around The U.S.: Build with HTML and CSS
 
-## Take a look at the final results at:  https://randypol.github.io/aroundtheus_react/
+## Take a look at the final results at:  https://randypol.github.io/se_project_aroundtheus/
 
 ### Overview  
 
